@@ -4,3 +4,11 @@
 # Тематический сайт
 
 MAUIMAN.dev
+
+
+# Переход на новую страницу Page
+
+```Csharp
+MainPage page = new MainPage();
+App.Current.MainPage = page;
+```

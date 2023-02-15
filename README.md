@@ -12,3 +12,35 @@ MAUIMAN.dev
 MainPage page = new MainPage();
 App.Current.MainPage = page;
 ```
+
+
+# Развертывание приложения Android на телефоне
+
+- подписывание приложения 
+
+```powershell
+keytool -genkey -v -keystore myapp.keystore -alias MyAppkey -keyalg RSA -keysize 2048 -validity 10000
+```
+
+- публикация
+
+```cmd
+dotnet publish -f:net7.0-android -c:Release /p:AndroidSigningKeyPass=password /p:AndroidSigningStorePass=password
+```
+
+https://www.telerik.com/blogs/publishing-dotnet-maui-app-android
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

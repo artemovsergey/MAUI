@@ -33,9 +33,26 @@ dotnet publish -f:net7.0-android -c:Release /p:AndroidSigningKeyPass=password /p
 
 https://www.telerik.com/blogs/publishing-dotnet-maui-app-android
 
+# Переключение на исполняемый файл exe вместо msix
 
+- Properties/launchSettings.json
 
+```json
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
+```
 
+- Project.csproj
+
+```xml
+<WindowsPackageType>None</WindowsPackageType>
+```
 
 
 

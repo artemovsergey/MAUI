@@ -4,7 +4,10 @@
 # Тематический сайт
 
 MAUIMAN.dev
+
 https://vladislavantonyuk.github.io/
+
+https://jesseliberty.com/
 
 # Переход на новую страницу Page
 

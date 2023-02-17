@@ -121,7 +121,22 @@ public abstract class ViewModel : INotifyPropertyChanged
 </ContentPage.BindingContext>
 ```
 
+# Внедрение зависимостей DI для сервиса
 
+```Csharp
+public class MainPageViewModel
+{
+    readonly IDataService _dataService;
+    public MainPageViewModel(IDataService dataService)
+    {
+        _dataService = dataService;
+    }
+}
+```
+- MainProgram.cs
+```Csharp
+builder.Services.AddSingleton<IDataService, DataService>();
+```
 
 
 

@@ -113,6 +113,14 @@ public abstract class ViewModel : INotifyPropertyChanged
   () =>  PersonAge > 2 );
 ```
 
+# Подключение ViewModel в View
+
+```xml
+<ContentPage.BindingContext>
+    <vm:PersonViewModel/>
+</ContentPage.BindingContext>
+```
+
 
 
 

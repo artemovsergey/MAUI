@@ -138,8 +138,26 @@ public class MainPageViewModel
 builder.Services.AddSingleton<IDataService, DataService>();
 ```
 
+# Вызов асинхронных методов
 
+Команды также могут вызывать асинхронные методы. Это достигается использованием ключевых слов asyncи awaitпри указании Executeметода:
 
+```Csharp
+DownloadCommand = new Command (async () => await DownloadAsync ());
+```
 
+Это указывает на то, что DownloadAsyncметод является Taskи его следует ожидать:
+
+```Csharp
+async Task DownloadAsync ()
+{
+    await Task.Run (() => Download ());
+}
+
+void Download ()
+{
+    ...
+}
+```
 
 

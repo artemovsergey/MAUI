@@ -252,4 +252,13 @@ namespace HelloApp
 
 Данный класс будет представлять страницу и наследуется от класса ContentPage. В конструкторе класса сначала формируется визуальный интерфейс в виде строки, которая содержит код XML и далее этого код загружается с помощью метода LoadFromXaml().
 
+# Контейнеры компоновки
 
+```xml
+    <StackLayout Spacing="5"
+                 Orientation="Horizontal">
+        <Label Text="Первая метка2" TextColor="Red" />
+        <Label Text="Вторая метка" TextColor="Blue" />
+        <Label Text="Третья метка" TextColor="Green" />
+    </StackLayout>
+```

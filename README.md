@@ -277,4 +277,14 @@ namespace HelloApp
         </AbsoluteLayout>
 ```
 
+```xml
+ <AbsoluteLayout>
+        <BoxView Color="Red" AbsoluteLayout.LayoutBounds=".1, .2, 50, 80"
+        AbsoluteLayout.LayoutFlags="PositionProportional" />
+        <BoxView Color="Green" AbsoluteLayout.LayoutBounds="1, .2, 50, 80"
+        AbsoluteLayout.LayoutFlags="PositionProportional" />
+        <BoxView Color="Blue" AbsoluteLayout.LayoutBounds=".4, .8, .2, .2"
+        AbsoluteLayout.LayoutFlags="All" />
+    </AbsoluteLayout>
+```
 

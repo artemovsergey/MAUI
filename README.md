@@ -290,16 +290,27 @@ namespace HelloApp
 ### Grid
 
 ```xml
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-        </Grid>
+<Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <BoxView Color="Red" Grid.Column="0" Grid.Row="0" />
+        <BoxView Color="Blue" Grid.Column="0" Grid.Row="1" />
+
+        <BoxView Color="Teal" Grid.Column="1" Grid.Row="0" />
+        <BoxView Color="Green" Grid.Column="1" Grid.Row="1" />
+
+        <BoxView Color="Olive" Grid.Column="2" Grid.Row="0" />
+        <BoxView Color="Pink" Grid.Column="2" Grid.Row="1" />
+    </Grid>
 ```
+
+
+
 

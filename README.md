@@ -414,3 +414,406 @@ builder
 
 ```
 
+## Поле
+
+```xml
+Entry Placeholder = "Введите Email" FontFamily="Helvetica"
+                FontSize="22" MaxLength ="20" />
+<Entry Keyboard="Telephone" />
+
+<Entry>
+    <Entry.Keyboard>
+        <Keyboard x:FactoryMethod="Create">
+            <x:Arguments>
+                <KeyboardFlags>Suggestions,CapitalizeCharacter</KeyboardFlags>
+            </x:Arguments>
+        </Keyboard>
+    </Entry.Keyboard>
+</Entry>
+
+<Entry x:Name="nameEntry" FontSize="22" TextChanged="nameEntry_TextChanged" />
+
+
+
+```
+
+## Многострочное поле
+
+```xml
+ <Editor FontSize="16" HeightRequest="200" />
+```
+
+## BoxView
+
+BoxView представляет прямоугольную область. Обычно BoxView применяется для создания окрашенных областей, либо в качестве декоративного примитивного графического оформления к другим элементам.
+
+``xml
+<BoxView Color="LightBlue" WidthRequest="150" HeightRequest="150" CornerRadius="8"
+                 HorizontalOptions="Center" VerticalOptions="Center" />
+```
+
+## ScrollView
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloApp.MainPage">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label FontSize="18">
+                <Label.Text>
+                    <x:String>
+«Мой дядя самых честных правил,
+Когда не в шутку занемог,
+Он уважать себя заставил
+И лучше выдумать не мог.
+Его пример другим наука;
+Но, боже мой, какая скука
+С больным сидеть и день и ночь,
+Не отходя ни шагу прочь!
+Какое низкое коварство
+Полуживого забавлять,
+Ему подушки поправлять,
+Печально подносить лекарство,
+Вздыхать и думать про себя:
+Когда же черт возьмет тебя!»
+ 
+Так думал молодой повеса,
+Летя в пыли на почтовых,
+Всевышней волею Зевеса
+Наследник всех своих родных.
+Друзья Людмилы и Руслана!
+С героем моего романа
+Без предисловий, сей же час
+Позвольте познакомить вас:
+Онегин, добрый мой приятель,
+Родился на брегах Невы,
+Где, может быть, родились вы
+Или блистали, мой читатель;
+Там некогда гулял и я:
+Но вреден север для меня.
+                    </x:String>
+                </Label.Text>
+            </Label>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+```
+
+# Image
+
+```xml
+<Image Source="forest.png" />
+<Image Source="https://news.microsoft.com/wp-content/uploads/2014/12/452292672.jpg" />
+
+<Image>
+    <Image.Source>
+        <UriImageSource Uri="https://news.microsoft.com/wp-content/uploads/2014/12/452292672.jpg"
+                        CacheValidity="2:00:00.0" />
+    </Image.Source>
+</Image>
+
+<Image Source="forest.png" Aspect="AspectFit" />
+
+```
+
+# Frame
+
+```xml
+<Frame BorderColor="Gray" BackgroundColor="#e1e1e1">
+    <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="Hello METANIT.COM" />
+</Frame>
+
+<Frame Margin="10" HorizontalOptions="Start"
+       IsClippedToBounds="True" CornerRadius="90"
+       HeightRequest="100" WidthRequest="100">
+    <Image Source="forest.png" Aspect="AspectFill" Margin="-20"
+	HeightRequest="100" WidthRequest="100"  />
+</Frame>
+
+<Frame BorderColor="Gray" BackgroundColor="#e1e1e1">
+    <StackLayout>
+	<Label HorizontalTextAlignment="Center" FontSize="22" Text=".NET MAUI" />
+	<BoxView HeightRequest="2" Color="DarkGray" />
+	<Label FontSize="16" Text=".NET MAUI - технология, предназначенная для создания кроссплатформенных приложений." />
+    </StackLayout>
+</Frame>
+
+```
+
+## DataPicker
+
+```xml
+<DatePicker Format="d" DateSelected="DateSelected">
+    <DatePicker.MinimumDate>7/10/2022</DatePicker.MinimumDate>
+    <DatePicker.MaximumDate>7/20/2022</DatePicker.MaximumDate>
+</DatePicker>
+```
+
+## TimePicker
+
+```xml
+ <TimePicker x:Name="timePicker" Time="17:00:00" PropertyChanged="TimePicker_PropertyChanged" />
+```
+
+## Stepper
+
+```xml
+<Stepper Minimum ="0" Maximum="10" Increment ="0.1" VerticalOptions = "Start"
+                 ValueChanged="OnStepperValueChanged" />
+```
+
+```Csharp
+void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+    {
+        header.Text = $"Выбрано: {e.NewValue:F1}";
+    }
+```
+
+## Slider
+
+```xml
+<Slider Minimum ="0" Maximum="50" Value="30" ValueChanged="OnSliderValueChanged"
+        MinimumTrackColor="DeepPink" MaximumTrackColor="LightPink" ThumbColor="DeepPink" />
+```
+
+```Csharp
+void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
+{
+    header.Text = $"Выбрано: {e.NewValue:F1}";
+}
+```
+
+## Switch
+
+```xml
+<Switch x:Name="switcher" IsToggled="True" Toggled="switcher_Toggled" />
+```
+```Csharp
+void switcher_Toggled(object sender, ToggledEventArgs e)
+    {
+        label.Text = $"Значение {e.Value}";
+    }
+```
+
+## CheckBox
+
+```xml
+<CheckBox x:Name="statusCheckBox" CheckedChanged="CheckBox_CheckedChanged" />
+```
+```Csharp
+void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        statusLabel.Text = $"Статус: {(e.Value ? "женат/замужем" : "холост/не замужем")}";
+    }
+```
+
+## RadioButton
+
+```xml
+    <StackLayout RadioButtonGroup.GroupName="languages">
+        <Label x:Name="header" Text="Выберите язык программирования" />
+        <RadioButton Content="C#" Value="C#" CheckedChanged="OnLanguageCheckedChanged" />
+        <RadioButton Content="Java" Value="Java"  CheckedChanged="OnLanguageCheckedChanged" />
+        <RadioButton Content="C++" Value="C++"  CheckedChanged="OnLanguageCheckedChanged" />
+    </StackLayout>
+```
+```Csharp
+    void OnLanguageCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        RadioButton selectedRadioButton = ((RadioButton)sender);
+        if(header!=null)
+            header.Text = $"Выбранный язык: {selectedRadioButton.Value}";
+    }
+```
+
+## Picker
+
+```xml
+<Picker x:Name="languagePicker" Title = "Язык программирования"
+	SelectedIndexChanged="PickerSelectedIndexChanged">
+    <Picker.Items>
+	<x:String>C#</x:String>
+	<x:String>JavaScript</x:String>
+	<x:String>Java</x:String>
+    </Picker.Items>
+</Picker>
+```
+```Csharp
+void PickerSelectedIndexChanged(object sender, EventArgs e)
+    {
+        header.Text = $"Вы выбрали: {languagePicker.SelectedItem}";
+    }
+```
+
+## TableView
+
+```xml
+<TableView>
+            <TableView.Root>
+                <TableRoot Title="Разработка ПО">
+                    <TableSection Title="Языки программирования">
+                        <TextCell Text="Java" Detail="Был создан в 1995 году в компании Sun Microsystems" />
+                        <TextCell Text="C#" Detail="Был создан в 2000 году в компании Microsoft" />
+                    </TableSection>
+                    <TableSection Title="Базы данных">
+                        <TextCell Text="MySQL" Detail="Была создана в 1995 году в компании MySQL AB" />
+                        <TextCell Text="MS SQL Server" Detail="Была создана в 1989 году в компании Microsoft" />
+                    </TableSection>
+                </TableRoot>
+            </TableView.Root>
+        </TableView>
+
+	<TableView>
+            <TableView.Root>
+                <TableRoot>
+                    <TableSection Title="Персональные данные">
+                        <EntryCell x:Name="loginEntry" Label="Логин" Keyboard="Default" Placeholder="Введите логин" Completed="OnTextCompleted" />
+                        <SwitchCell x:Name="saveSwitch" Text="Сохранить" OnChanged="OnStatusChanged" />
+                    </TableSection>
+                </TableRoot>
+            </TableView.Root>
+        </TableView>
+
+
+ 	<TableView>
+            <TableView.Root>
+                <TableRoot>
+                    <TableSection Title="Языки программирования">
+                        <ImageCell Text="C#" Detail="Создатель: Андерс Хейлсберг" ImageSource="csharp.jpg"  />
+                        <ImageCell Text="C++" Detail="Создатель: Бьорн Страуструп" ImageSource="cpp.jpg" />
+                        <ImageCell Text="Java" Detail="Создатель: Джеймс Гослинг" ImageSource="java.jpg" />
+                    </TableSection>
+                </TableRoot>
+            </TableView.Root>
+        </TableView>
+
+```
+```Csharp
+    void OnTextCompleted(object sender, EventArgs e)
+    {
+        loginLbl.Text = loginEntry.Text;
+    }
+ 
+    void OnStatusChanged(object sender, ToggledEventArgs e)
+    {
+        saveLbl.Text = saveSwitch.On ? "сохранено" : "не сохранено";
+    }
+```
+
+# Сообщения
+
+## DisplayAlert
+
+```Csharp
+async void AlertButton_Clicked(object sender, EventArgs e)
+    {
+        await DisplayAlert("Уведомление", "Пришло новое сообщение", "ОK");
+    }
+    
+async void AlertButton_Clicked(object sender, EventArgs e)
+{
+    bool result = await DisplayAlert("Подтвердить действие", "Вы хотите удалить элемент?", "Да", "Нет");
+    await DisplayAlert("Уведомление", "Вы выбрали: "+ (result ? "Удалить" : "Отменить"), "OK");
+}
+     
+```
+
+## DisplayActionSheet
+
+```Csharp
+    async void AlertButton_Clicked(object sender, EventArgs e)
+    {
+        var action = await DisplayActionSheet("Выбрать язык", "Отмена", "Удалить", "C#", "JavaScript", "Java");
+        actionLabel.Text = action;
+    }
+```
+
+## DisplayPromtAsync
+
+```xml
+ async void AlertButton_Clicked(object sender, EventArgs e)
+    {
+        var name = await DisplayPromptAsync("Логин", "Введите имя:", "OK", "Отмена");
+        nameLabel.Text = name;
+    }
+```
+
+## ProgressBar
+
+```xml
+<StackLayout Padding="20">
+        <Label Text="Progressbar" />
+        <ProgressBar Progress="0.4" ProgressColor="SeaGreen" />
+    </StackLayout>
+```
+```Csharp
+namespace HelloApp
+{
+    class StartPage : ContentPage
+    {
+        ProgressBar progressBar = new ProgressBar { ProgressColor = Colors.SeaGreen };
+        Label label = new Label();
+        public StartPage()
+        {
+            StackLayout stackLayout = new StackLayout { Padding = 20 };
+
+            stackLayout.Children.Add(label);
+            stackLayout.Children.Add(progressBar);
+            Content = stackLayout;
+        }
+        protected override async void OnAppearing()
+        {
+            while(progressBar.Progress < 0.9)
+            {
+                progressBar.Progress += 0.1;
+                label.Text = $"Состояние процесса: {Math.Round(progressBar.Progress, 1) * 100} %";
+                await Task.Delay(1000);
+            }
+            label.Text = "Процесс закончен";
+            base.OnAppearing();
+        }
+    }
+}
+```
+
+
+
+## ActivityIndicator
+
+```xml
+ActivityIndicator IsRunning="true" Color="SeaGreen" />
+
+```
+```Csharp
+namespace HelloApp
+{
+    class StartPage : ContentPage
+    {
+        ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true, Color = Colors.SeaGreen };
+        Label label = new Label();
+        public StartPage()
+        {
+            StackLayout stackLayout = new StackLayout { Padding = 20 };
+ 
+            stackLayout.Children.Add(label);
+            stackLayout.Children.Add(activityIndicator);
+            Content = stackLayout;
+        }
+        protected override async void OnAppearing()
+        {
+            int count = 0;
+            while (count != 100)
+            {
+                label.Text = $"Состояние процесса: {count} %";
+                await Task.Delay(2000);
+                count +=10;
+            }
+            label.Text = "Процесс закончен";
+            activityIndicator.IsRunning = false;
+            base.OnAppearing();
+        }
+    }
+}
+```

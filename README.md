@@ -311,6 +311,106 @@ namespace HelloApp
     </Grid>
 ```
 
+# Размеры
+
+```xml
+<Button Text="Click" WidthRequest="100" HeightRequest="50" />
+```
+
+# Margin and Padding
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloApp.MainPage">
+    <StackLayout Padding="60">
+        <BoxView Color="Blue" Margin="50" HeightRequest="100" />
+        <BoxView Color="Red"  Margin="50" HeightRequest="100" />
+    </StackLayout>
+</ContentPage>
+```
+![https://metanit.com/sharp/maui/pics/4.1.png]()
+
+# Выравнивание
+
+```xml
+<Label Text="Hello METANIT.COM" VerticalOptions="Center" HorizontalOptions="Center" />
+```
+# Color
+
+```xml
+ <Label Text="Hello METANIT.COM"
+           VerticalOptions="Center" HorizontalOptions="Center"
+           BackgroundColor="LightBlue" TextColor="DarkBlue"
+           />
+<Label Text="Hello METANIT.COM" BackgroundColor="#B2DFDB" TextColor="#aa004D40" />
+
+```
+# Стилизация текста
+
+```xml
+<Label Text=".NET MAUI in Arial" FontFamily="Arial" />
+Свойство FontSize
+
+<Label Text="Bold" FontAttributes="Bold" />
+<Label Text="Bold и Italics" FontAttributes="Bold, Italic" />
+
+<Label Text="Hello METANIT.COM!" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+
+```
+### Шрифт
+
+```Csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<app>()
+    .ConfigureFonts(fonts =>
+    {
+        fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+        fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+});
+</app>
+```
+## Button
+
+```xml
+<Button Text="Нажми" FontSize="22" BorderWidth="1"
+                BackgroundColor="LightPink" TextColor="DarkRed"
+        HorizontalOptions="Center" VerticalOptions="Center"
+        Clicked="OnButtonClicked" />
+```
+
+## Label
+
+```xml
+<Label FontSize="22" Text = "Hello METANIT.COM!"
+             TextDecorations = "Underline" CharacterSpacing = "2"
+             FontAttributes = "Bold" FontFamily = "Helvetica"
+            HorizontalOptions="Center" VerticalOptions="Center"
+         />
+
+<Label HorizontalOptions="Center" VerticalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Сегодня " FontSize="22" />
+                    <Span Text="хорошая " BackgroundColor="LightPink" TextColor="DarkRed" />
+                    <Span Text="погода!" FontAttributes="Bold" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+ <Label HorizontalOptions="Center" VerticalOptions="Center" FontSize="22">
+            <Label.Text>
+                <x:String>
+Его пример другим наука;
+Но, боже мой, какая скука
+С больным сидеть и день и ночь,
+Не отходя ни шагу прочь!
+                </x:String>
+            </Label.Text>
+        </Label>
 
 
+```
 

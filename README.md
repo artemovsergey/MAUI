@@ -254,6 +254,8 @@ namespace HelloApp
 
 # Контейнеры компоновки
 
+### Stack Layout
+
 ```xml
     <StackLayout Spacing="5"
                  Orientation="Horizontal">
@@ -262,3 +264,17 @@ namespace HelloApp
         <Label Text="Третья метка" TextColor="Green" />
     </StackLayout>
 ```
+
+### Absolute Layout
+
+```xml
+        <AbsoluteLayout Margin="20">
+            <BoxView Color="LightPink"
+                 AbsoluteLayout.LayoutBounds="30, 70, 340, 100" />
+            <Label Text=".NET MAUI on METANIT.COM"
+               FontSize="20"
+               AbsoluteLayout.LayoutBounds="50, 100" />
+        </AbsoluteLayout>
+```
+
+

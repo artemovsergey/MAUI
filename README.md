@@ -1199,3 +1199,13 @@ public class StringToCurrencyConverter : IValueConverter
                 </Binding>
 ```
 
+## Относительная привязка
+
+https://metanit.com/sharp/maui/6.8.php
+
+
+
+
+
+
+

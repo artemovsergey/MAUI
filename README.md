@@ -1076,3 +1076,12 @@ https://metanit.com/sharp/maui/5.5.php
     </StackLayout>
 ```
 
+## StringFormat
+
+```xml
+<Entry WidthRequest="100" HeightRequest="20" Placeholder="Name" x:Name="textBox"/>
+
+<Entry WidthRequest="100" HeightRequest="20" Placeholder="Name"
+       Text="{Binding Source={x:Reference textBox}, Path=Text, StringFormat='Текст: {0}',Mode=OneWay}"
+ />
+```

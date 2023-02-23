@@ -1203,9 +1203,92 @@ public class StringToCurrencyConverter : IValueConverter
 
 https://metanit.com/sharp/maui/6.8.php
 
+# Тригеры
 
+```xml
+<Entry TextColor="LightGray" Text="Hello METANIT.COM">
+    <Entry.Triggers>
+	<Trigger Property="IsFocused" Value="True" TargetType="Entry">
+	    <Setter Property="TextColor" Value="Green" />
+	</Trigger>
+    </Entry.Triggers>
+</Entry>
+```
+## Тригеры как стили
 
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloApp.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Style.Triggers>
+                    <Trigger Property="IsFocused" Value="True" TargetType="Entry">
+                        <Setter Property="TextColor" Value="#000" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Padding="20">
+        <Entry TextColor="LightGray" Text="Hello METANIT.COM" Style="{StaticResource entryStyle}" />
+    </StackLayout>
+</ContentPage>
+```
+## Тригеры событий
 
+```Csharp
+public class EntryValidation : TriggerAction<Entry>
+{
+    protected override void Invoke(Entry sender)
+    {
+        int number;
+        if (!Int32.TryParse(sender.Text, out number))
+            sender.BackgroundColor = Color.Red;
+        else
+            sender.BackgroundColor = Color.Default;
+    }
+}
+```
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HelloApp"
+             x:Class="HelloApp.MainPage">
+    <StackLayout Padding="20">
+        <Entry>
+            <Entry.Triggers>
+                <EventTrigger Event="TextChanged">
+                    <local:EntryValidation />
+                </EventTrigger>
+            </Entry.Triggers>
+        </Entry>
+    </StackLayout>
+</ContentPage>
+```
+## Триггеры данных
 
-
-
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloApp.MainPage">
+    <StackLayout Padding="10">
+        <Entry x:Name="entry" Text="" Margin="10" />
+        <Button Text="Save" TextColor="#01579B" BackgroundColor="#fff" Margin="10">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button"
+                     Binding="{Binding Source={x:Reference entry}, Path=Text.Length}"
+                     Value="0">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Setter Property="BackgroundColor" Value="LightGray"/>
+                    <Setter Property="TextColor" Value="Gray"/>
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+    </StackLayout>
+</ContentPage>
+```

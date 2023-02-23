@@ -817,3 +817,213 @@ namespace HelloApp
     }
 }
 ```
+# Ресурсы
+
+```xml
+<ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="textColor">#004D40</Color>
+            <Color x:Key="backColor">#80CBC4</Color>
+            <x:Double x:Key="margin">10</x:Double>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+```
+
+```xml
+  <Button Text="iOS" TextColor="{StaticResource Key=textColor}"
+```
+
+# Стили
+
+```xml
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#004D40" />
+                <Setter Property="BackgroundColor" Value="#80CBC4" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+```
+# Наследование стилей
+
+```xml
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="baseButtonStyle" TargetType="Button">
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="WidthRequest" Value="120" />
+                <Setter Property="TextColor" Value="#01579B" />
+                <Setter Property="BackgroundColor" Value="#fff" />
+            </Style>
+            <Style x:Key="greenButtonStyle" TargetType="Button" BasedOn="{StaticResource baseButtonStyle}">
+                <Setter Property="TextColor" Value="#004D40" />
+                <Setter Property="BackgroundColor" Value="#80CBC4" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+```
+# Внешние стили
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TNC.MAUI.Resources.Styles.GreenButtonStyle">
+    <Style x:Key="greenButtonStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="#004D40" />
+        <Setter Property="BackgroundColor" Value="#80CBC4" />
+        <Setter Property="Margin" Value="10" />
+    </Style>
+</ResourceDictionary>
+```
+```xml
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Resources/Styles/GreenButtonStyle.xaml" />
+    </ContentPage.Resources>
+```
+## Css
+
+```css
+^contentpage {
+    background-color: #fefefe;
+}
+
+stacklayout {
+    padding: 20;
+}
+
+    stacklayout label {
+        font-family: Verdana;
+        margin: 5;
+    }
+
+#header {
+    font-size: 18;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.english {
+    font-weight: bold;
+    font-size: 14;
+    color: darkblue;
+}
+
+.russian {
+    font-size: 12;
+}
+```
+
+```xml
+    <ContentPage.Resources>
+        <StyleSheet Source="/styles/mystyles.css" />
+        <StyleSheet>
+            <![CDATA[
+            ^contentpage {
+                background-color: lightcyan
+            }
+ 
+            stacklayout {
+                margin: 25;
+                padding: 10;
+            }
+            ]]>
+        </StyleSheet>
+
+
+    </ContentPage.Resources>
+```
+
+## Visual State Manager и визуальные состояния
+
+Visual State Manager (менеджер визуальных состояний) позволяет организовать изменения визуального интерфейса. По умолчанию Visual State Manager прикрепляет к элементам управления группу из трех состояний:
+
+- Disabled: элемент отключен для использования
+
+- Focused: элемент получил фокус и используется в текущий момент
+
+- Normal: стандартное состояние элемента
+
+- PointerOver: указатель мыши находится над элементом
+
+Состояния Normal, Disabled, Focused и PointerOver поддерживается для объектов всех классов, которые унаследованы от VisualElement (в том числе классов View и Page). Кроме того, при необходимости можно определять свои визуальные состояния.
+
+```xml
+<StackLayout>
+        <Entry x:Name="entry" Text="Hello METANIT.COM!">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CustomStates">
+ 
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="#004D40" />
+                            <Setter Property="BackgroundColor" Value="#B2DFDB" />
+                        </VisualState.Setters>
+                    </VisualState>
+ 
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="#004D40" />
+                            <Setter Property="FontAttributes" Value="Bold" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Entry>
+    </StackLayout>
+```
+
+Определение в ресурсах
+
+```xml
+ <ContentPage.Resources>
+        <Style TargetType="Entry">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CustomStates">
+ 
+                        <VisualState x:Name="Focused">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#004D40" />
+                                <Setter Property="BackgroundColor" Value="#B2DFDB" />
+                            </VisualState.Setters>
+                        </VisualState>
+ 
+                        <VisualState x:Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#004D40" />
+                                <Setter Property="FontAttributes" Value="Bold" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+```
+
+## Доступные визуальные состояния
+
+В .NET MAUI для ряда элементов есть дополнительные состояния:
+
+- VisualElement определяет общие для всех элементов состояния Normal, Disabled, Focused и PointerOver
+
+- Button определяет состояние Pressed (нажатие кнопки)
+
+- CarouselView определяет состояния DefaultItem, CurrentItem, PreviousItem и NextItem
+
+- CheckBox определяет состояние IsChecked (флажок отмечен)
+
+- CollectionView определяет состояние Selected (элемент выделен)
+
+- ImageButton определяет состояние Pressed (нажатие кнопки)
+
+- RadioButton определяет состояния Checked (элемент выбран) и Unchecked (элемент не выбран)
+
+- Switch определяет состояния On (включено) и Off(выключено)
+
+
+# Определение своих визуальных состояний
+https://metanit.com/sharp/maui/5.5.php

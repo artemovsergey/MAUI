@@ -1361,3 +1361,100 @@ private void UsersListView_ItemTapped(object sender, ItemTappedEventArgs e)
     }
 ```
 
+В ListView для отображения данных можно применять еще несколько типов ячеек:
+
+- TextCell: выводит заголовок и некоторое детальное описание
+
+- ImageCell: выводит рядом с заголовком и детальным описанием изображение
+
+Для простых случаев, когда для каждого объекта в списке необходимо вывести заголовок и некоторую аннотацию к нему, можно использовать класс TextCell. Его основные свойства, которые могут нам пригодиться:
+
+- Text: основной текст, выводится большим шрифтом
+
+- Detail: детальное описание, выводится меньшим шрифтом
+
+- TextColor: цвет текста
+
+- DetailColor: цвет детального описания
+
+```xml
+ <Label Text="Список пользователей" FontSize="18" TextColor="#004D40"/>
+        <ListView x:Name="usersListView" ItemsSource="{StaticResource users}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell
+                        Text="{Binding Name}"
+                        Detail="{Binding Age, StringFormat='{0} лет'}"
+                        TextColor="#004D40"
+                        DetailColor="#26A69A"
+                        />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+```
+
+```xml
+ <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell
+                        ImageSource="{Binding ImagePath}"
+                        Text="{Binding Name}"
+                        Detail="{Binding Description}"
+                        TextColor="#004D40"
+                        DetailColor="#26A69A"
+                    />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+```
+```xml
+<ListView ItemsSource="{StaticResource langs}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Image Source="{Binding ImagePath}" WidthRequest="30" HeightRequest="30" />
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="16" TextColor="#004D40" />
+                                <Label Text="{Binding Description}" TextColor="#26A69A" FontSize="13" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+```
+## Header and Footer in ListView
+
+```xml
+<ListView RowHeight="50" x:Name="listView" ItemsSource="{Binding People}" >
+
+            <ListView.Header>
+                <Label Text= "Список пользователей" FontSize="18" />
+            </ListView.Header>
+            
+            <ListView.Footer>
+                <VerticalStackLayout>
+                    <Label FontSize="12" Text="METANIT.COM" />
+                    <Label FontSize="12" Text="январь 2023" />
+                </VerticalStackLayout>
+            </ListView.Footer>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="16" />
+                                <Label Text="{Binding Age}" FontSize="14" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+```
+
+# Cashing
+
+https://metanit.com/sharp/maui/8.9.php

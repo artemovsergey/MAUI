@@ -1292,3 +1292,34 @@ public class EntryValidation : TriggerAction<Entry>
     </StackLayout>
 </ContentPage>
 ```
+## Мультитриггеры
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloApp.MainPage">
+    <StackLayout Padding="10">
+        <Entry x:Name="email" Text="" Margin="6" />
+        <Entry x:Name="phone" Text="" Margin="6"/>
+        <Button Text="Send" TextColor="#01579B" BackgroundColor="#fff" >
+            <Button.Triggers>
+                <MultiTrigger TargetType="Button">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding Source={x:Reference email}, Path=Text.Length}"
+                                  Value="0" />
+                        <BindingCondition Binding="{Binding Source={x:Reference phone}, Path=Text.Length}"
+                                  Value="0" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Setter Property="BackgroundColor" Value="LightGray" />
+                    <Setter Property="TextColor" Value="Gray" />
+                </MultiTrigger>
+            </Button.Triggers>
+        </Button>
+    </StackLayout>
+</ContentPage>
+```
+
+
+

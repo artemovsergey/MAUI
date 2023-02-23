@@ -1085,3 +1085,117 @@ https://metanit.com/sharp/maui/5.5.php
        Text="{Binding Source={x:Reference textBox}, Path=Text, StringFormat='Текст: {0}',Mode=OneWay}"
  />
 ```
+
+## Конвертер значений
+
+Прежде всего класс конвертера значений должен реализовать интерфейс IValueConverter. Этот интерфейс определяет два метода: Convert(), который преобразует пришедшее от привязки значение в тот тип, который понимается приемником привязки, и ConvertBack(), который выполняет противоположную операцию.
+
+Оба метода принимают четыре параметра:
+
+object value: значение, которое надо преобразовать
+
+Type targetType: тип, к которому надо преобразовать значение value
+
+object parameter: вспомогательный параметр
+
+CultureInfo culture: текущая культура приложения
+
+Метод Convert вызывается при передаче данных от источника привязки к цели, когда действуют режимы привязки OneWay и TwoWay. Параметр value представляет значение, которое пришло от источника. Метод должен возвратить значение к типу привязанного свойства цели.
+
+Метод ConvertBack() вызывается, когда данные передаются от цели привязки к источнику при режимах привязки TwoWay и OneWayToSource. ConvertBack выполняет обратное преобразование к типу привязанного свойства источника.
+
+```Csharp
+public class DateTimeToLocalDateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((DateTime)value).ToString("dd.MM.yyyy");
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return DateTime.Parse(value.ToString());
+        }
+    }
+```
+```xml
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HelloApp"
+             x:Class="HelloApp.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DateTimeToLocalDateConverter x:Key="dateConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Padding="20">
+        <Label Text="{Binding Source={x:Reference Name=datePicker},  
+                        Path=Date, 
+                        Converter={StaticResource dateConverter}}" />
+        <DatePicker x:Name="datePicker" />
+    </StackLayout>
+</ContentPage>
+```
+
+## Пример использования конвертера
+
+```Csharp
+public class StringToStatusConverter : IValueConverter
+    {
+        public string ApprovedStatus { get; set; } = "Approved";
+        public string DeniedStatus { get; set; } = "Denied";
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string username = (string)value;
+            if (username == "admin") return ApprovedStatus;
+            return DeniedStatus;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var status = value.ToString();
+ 
+            if (status == ApprovedStatus) return "admin";
+            return "user";
+        }
+    }
+```
+
+```xml
+        <Entry x:Name="entry" />
+        <Label>
+            <Label.Text>
+                <Binding Source="{x:Reference entry}" Path="Text">
+                    <Binding.Converter>
+                        <local:StringToStatusConverter ApprovedStatus="Доступ разрешен" DeniedStatus="Доступ запрещен" />
+                    </Binding.Converter>
+                </Binding>
+            </Label.Text>
+        </Label>
+```
+
+## Параметры конвертера
+
+```Csharp
+public class StringToCurrencyConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if(parameter.ToString()== "euro")
+            {
+                return $"{value} €";
+            }
+            return $"{value} $";
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value.ToString().Replace("  €", "").Replace(" $", "");
+        }
+    }
+```
+```xml
+ <Binding Source="{x:Reference entry}" Path="Text" ConverterParameter="euro">
+                    <Binding.Converter >
+                        <local:StringToCurrencyConverter />
+                    </Binding.Converter>
+                </Binding>
+```
+

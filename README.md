@@ -1321,5 +1321,43 @@ public class EntryValidation : TriggerAction<Entry>
 </ContentPage>
 ```
 
+# ListView
 
+## Обработка выбора элемента
+
+Когда пользователь нажимает на элемент списка, он выделяется, а у ListView срабатывают два события: ItemTapped и ItemSelected. Между ними есть различия. Так, повторное нажатие на один и тот же элемент не вызовет повторного события ItemSelected, так как элемент остается выбанным. А вот событие ItemTapped будет срабатывать именно столько раз сколько пользователь нажал на него, даже повторно. Также событие ItemSelected будет вызвано, если с элемента будет снято выделение.
+
+```xml
+        <Label Text="{Binding Source={Reference listView}, Path=SelectedItem.Name}" />
+        <ListView RowHeight="50" x:Name="listView" ItemsSource="{Binding People}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="16" />
+                                <Label Text="{Binding Age}" FontSize="14" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+```
+```Csharp
+private void UsersListView_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        var tappedUser = e.Item as User;
+        if (tappedUser != null) 
+            tappedItemHeader.Text = $"Нажато: {tappedUser.Name}";
+    }
+ 
+    private void UsersListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        var selectedUser = e.SelectedItem as User;
+        if (selectedUser != null)
+            selectedItemHeader.Text = $"Выбрано: {selectedUser.Name}";
+    }
+```
 

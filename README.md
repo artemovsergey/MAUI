@@ -1586,3 +1586,28 @@ https://metanit.com/sharp/maui/8.9.php
     </CollectionView>
 ```
 
+### Команда для CollectionView
+
+```Csharp
+SelectCommand = new Command<Person?>(p =>
+        {
+            selectedLabel.Text = $"Selected: {p?.Name}";
+        });
+```
+
+```xml
+  <CollectionView x:Name="collectionView" SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SelectCommand}"
+                        SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
+```
+
+
+
+
+
+
+
+
+
+
+

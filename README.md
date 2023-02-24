@@ -1464,8 +1464,16 @@ https://metanit.com/sharp/maui/8.9.php
 # CarouselView
 
 ```xml
-    <VerticalStackLayout Padding="5">
-        <CarouselView IndicatorView="indicatorView" >
+<VerticalStackLayout Padding="5">
+
+        <Label x:Name="header" FontSize="18" Text="{Binding Source={x:Reference carouselView}, Path=CurrentItem.Name}" />
+
+        <CarouselView x:Name="carouselView"
+                      IndicatorView="indicatorView"
+                      CurrentItemChangedCommand="{Binding SelectCommand}"
+                      CurrentItemChangedCommandParameter="{Binding Source={x:Reference carouselView}, Path=CurrentItem}"
+                      >
+                      <!-- Команда срабатывает на изменение продукта -->
 
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" />
@@ -1488,7 +1496,19 @@ https://metanit.com/sharp/maui/8.9.php
                             <Image WidthRequest="150" HeightRequest="150" Source="{Binding ImagePath}" />
                             <Label Text="{Binding Description}" HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
+
+                        <!-- Выбор механизма выбора элемента по клику -->
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={x:Reference carouselView}, Path=BindingContext.SelectCommand}"
+                                CommandParameter="{Binding}"/>
+                        </Frame.GestureRecognizers>
+
+
                     </Frame>
+                    
+
+                    
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
@@ -1501,4 +1521,29 @@ https://metanit.com/sharp/maui/8.9.php
 
     </VerticalStackLayout>
 ```
+
+# Сообщение из ViewModel
+
+```Csharp
+            SelectCommand = new Command<Product>(async p =>
+            {
+                //await DisplayAlert("Notification", $"You have selected: {p.Name}", "ОK");
+
+                await Application.Current.MainPage.DisplayAlert("Notification", $"You have selected: {p.Name}", "ОK");
+
+            });
+```
+
+## Событие изменение элемента в карусели 
+
+```Csharp
+    private void carouselView_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
+    {
+        Product? current = e.CurrentItem as Product;
+        Product? previous = e.PreviousItem as Product;
+        header.Text = $"Current: {current?.Name}  Previous: {previous?.Name}";
+    }
+```
+
+
 

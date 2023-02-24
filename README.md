@@ -9,6 +9,8 @@ https://vladislavantonyuk.github.io/
 
 https://jesseliberty.com/
 
+https://learn.microsoft.com/en-us/training/paths/build-apps-with-dotnet-maui/
+
 # Переход на новую страницу Page
 
 ```Csharp

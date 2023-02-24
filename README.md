@@ -1633,6 +1633,7 @@ SelectCommand = new Command<Person?>(p =>
 	);
 ```
 
+https://metanit.com/sharp/maui/12.3.php
 
 
 

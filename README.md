@@ -1458,3 +1458,45 @@ private void UsersListView_ItemTapped(object sender, ItemTappedEventArgs e)
 # Cashing
 
 https://metanit.com/sharp/maui/8.9.php
+
+# CarouselView
+
+```xml
+    <VerticalStackLayout Padding="5">
+        <CarouselView IndicatorView="indicatorView" >
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type local:Product}">
+                    <local:Product Name="Huawei P50" ImagePath="image.jpg" Description="Цена 59000" />
+                    <local:Product Name="iPhone 14" ImagePath="image.jpg" Description="Цена 65000" />
+                    <local:Product Name="Realme GT2 Pro" ImagePath="image.jpg" Description="Цена 41000" />
+                    <local:Product Name="Xiaomi 12X" ImagePath="image.jpg" Description="Цена 53999" />
+                </x:Array>
+            </CarouselView.ItemsSource>
+            
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center"/>
+                            <Image WidthRequest="150" HeightRequest="150" Source="{Binding ImagePath}" />
+                            <Label Text="{Binding Description}" HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <IndicatorView Margin="0, 10, 0, 0" x:Name="indicatorView"
+                   IndicatorColor="LightGray"
+                   SelectedIndicatorColor="Red"
+                   HorizontalOptions="Center" />
+
+
+    </VerticalStackLayout>
+```
+

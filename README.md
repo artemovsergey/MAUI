@@ -1601,8 +1601,37 @@ SelectCommand = new Command<Person?>(p =>
                         SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
 ```
 
+# Navigation
+
+```Csharp
+	SwitchToMainPageCommand = new Command(
+	async () => 
+	{
+	    await Application.Current.MainPage.Navigation.PushAsync(
+
+		new NavigationPage(new MainPage())
+		{
+		    BarBackground = Brush.Yellow,
+		    BarBackgroundColor = Color.FromArgb("#2980B9"),
+		    BarTextColor = Colors.White
+		}
 
 
+
+	     );
+	}
+```
+
+```Csharp
+    BackCommand = new Command(
+	async () =>
+	{
+	await Application.Current.MainPage.Navigation.PopAsync();
+
+	}
+
+	);
+```
 
 
 

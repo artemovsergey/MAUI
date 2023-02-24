@@ -1545,5 +1545,44 @@ https://metanit.com/sharp/maui/8.9.php
     }
 ```
 
+# CollectionView
 
+```xml
+<CollectionView ItemsLayout="HorizontalGrid, 2" VerticalOptions="Start" >
+
+        <!--
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout  ItemSpacing="20"  />
+        </CollectionView.ItemsLayout>
+        -->
+        
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type local:Person}">
+                <local:Person Name="Tom" Age="1" />
+                <local:Person Name="Bob" Age="2" />
+                <local:Person Name="Sam" Age="3" />
+                <local:Person Name="Alice" Age="4" />
+                <local:Person Name="Kate" Age="5" />
+            </x:Array>
+        </CollectionView.ItemsSource>
+        
+        <CollectionView.Header>
+            <Label Text= "Список пользователей" FontSize="18" FontAttributes="Bold" />
+        </CollectionView.Header>
+        
+        <CollectionView.Footer>
+            <Label Text= "Январь 2023г." FontSize="14" FontAttributes="Italic" />
+        </CollectionView.Footer>
+        
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Padding="8">
+                    <Label Text="{Binding Name}" FontSize="18" TextColor="#006064" />
+                    <Label Text="{Binding Company}" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        
+    </CollectionView>
+```
 

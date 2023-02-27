@@ -1635,6 +1635,82 @@ SelectCommand = new Command<Person?>(p =>
 
 https://metanit.com/sharp/maui/12.3.php
 
+## Навигация через AppShell
+
+```Csharp
+        [RelayCommand]
+        async Task Tap()
+        {
+            await Shell.Current.GoToAsync("//PageNew");
+            //await Shell.Current.GoToAsync("PageNew");
+
+        }
+
+        [RelayCommand]
+        async Task TapBack()
+        {
+            //await Shell.Current.GoToAsync("//MainPage");
+            await Shell.Current.GoToAsync("//MainPage");
+            // ..
+            // //MainPage
+        }
+```
+
+```Csharp
+        public AppShell()
+        {
+            InitializeComponent();
+
+            Routing.RegisterRoute(nameof(PageNew), typeof(PageNew));
+            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
+        }
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TaskApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TaskApp"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="PageNew"
+        ContentTemplate="{DataTemplate local:PageNew}"
+        Route="PageNew" />
+
+
+
+</Shell>
+```
+```Csharp
+        public App()
+        {
+            InitializeComponent();
+
+            MainPage = new AppShell();
+        }
+```
+
+# Tap
+
+```xml
+        <Frame BackgroundColor="Yellow" WidthRequest="200" HeightRequest="100">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding TapCommand}"/>
+            </Frame.GestureRecognizers>
+            <Label Text="Нажать"/>
+        </Frame>
+```
+
+
+
 
 # Удаление с помощью Swipe (Android)
 

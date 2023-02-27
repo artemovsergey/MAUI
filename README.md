@@ -1697,6 +1697,11 @@ https://metanit.com/sharp/maui/12.3.php
             MainPage = new AppShell();
         }
 ```
+https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation?view=net-maui-7.0
+
+https://github.com/dotnet/docs-maui/blob/main/docs/fundamentals/shell/navigation.md
+
+
 
 # Tap
 

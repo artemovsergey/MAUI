@@ -1672,7 +1672,26 @@ https://metanit.com/sharp/maui/12.3.php
             </CollectionView.ItemTemplate>
 ```
 
+# Тип данных ViewModel для Page
 
+```xml
+x:DataType="viewmodel:MainViewModel"
+```
 
+# ViewModel for CommunityToolkit.Mvvm
+
+```Csharp
+public partial class MainViewModel : ObservableObject
+    {
+        [ObservableProperty]
+        string test;
+
+        [RelayCommand]
+        void SayText()
+        {
+            Test = "text1";
+        }
+    }
+```
 
 

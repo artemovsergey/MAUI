@@ -1636,6 +1636,41 @@ SelectCommand = new Command<Person?>(p =>
 https://metanit.com/sharp/maui/12.3.php
 
 
+# Удаление с помощью Swipe (Android)
+
+```xml
+<CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
+
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="red"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=DeleteCommand}"
+                                           CommandParametr="{Binding .}"
+                            />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <StackLayout Padding="0" VerticalOptions="Center">
+
+                            <Entry Placeholder="..." Text="{Binding Test, Mode=TwoWay}"/>
+                           
+                            <Label Text="{Binding Test, StringFormat='Fruit: {0}',Mode=TwoWay}"
+                               FontSize="20"/>
+
+                            <Button WidthRequest="200" HeightRequest="30"
+                                    Text="Написать"
+                                    Command="{Binding SayTextCommand}"/>
+
+                        </StackLayout>
+
+                    </SwipeView>
+                            
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+```
 
 
 

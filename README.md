@@ -1783,4 +1783,18 @@ public partial class MainViewModel : ObservableObject
     }
 ```
 
+# Проверка доступа в интернет
+
+```Csharp
+ if(Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+    {
+	Shell.Current.DisplayAlert("Uh Oh!","No Internet","Ok");
+    }
+```
+
+
+
+
+
+
 

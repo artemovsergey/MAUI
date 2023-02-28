@@ -11,6 +11,11 @@ https://jesseliberty.com/
 
 https://learn.microsoft.com/en-us/training/paths/build-apps-with-dotnet-maui/
 
+https://vladislavantonyuk.github.io/
+https://github.com/VladislavAntonyuk/MauiSamples
+
+https://github.com/naweed/MauiTubePlayer
+
 # Переход на новую страницу Page
 
 ```Csharp

@@ -16,6 +16,9 @@ https://github.com/VladislavAntonyuk/MauiSamples
 
 https://github.com/naweed/MauiTubePlayer
 
+https://github.com/naweed/MauiPlanets
+
+
 # Переход на новую страницу Page
 
 ```Csharp

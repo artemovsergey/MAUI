@@ -40,6 +40,40 @@ https://github.com/naweed/MauiTubePlayer
 https://github.com/naweed/MauiPlanets
 
 
+# MauiProgram
+
+```Csharp
+public static class MauiProgram
+{
+	public static MauiApp CreateMauiApp()
+	{
+		var builder = MauiApp.CreateBuilder();
+		builder
+			.UseMauiApp<App>()
+			.ConfigureFonts(fonts =>
+			{
+				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+			});
+
+		#if DEBUG
+		builder.Logging.AddDebug();
+		#endif
+
+		// Подключение базы данных SQL Server
+		string connection = builder.Configuration.GetConnectionString("SQLite");
+		//builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+		//builder.Services.AddDbContext<UserContext>(options => options.UseSqlite(connection));
+        //builder.Services.AddDbContext<DataContext>(options => options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 30))));
+        //builder.Services.AddDbContext<DataContext>(options => options.UseSqlite(connection));
+        builder.Services.AddTransient<UserContext>();
+		
+        return builder.Build();
+	}
+}
+```
+
+
 # Context
 
 ```Csharp

@@ -40,6 +40,46 @@ https://github.com/naweed/MauiTubePlayer
 https://github.com/naweed/MauiPlanets
 
 
+# Context
+
+```Csharp
+public class UserContext : DbContext
+    {
+        public DbSet<User> Users { get; set; }
+
+        //public UserContext(DbContextOptions<UserContext> options) : base(options)
+        //{
+        //    Database.EnsureCreated();
+        //}
+
+        public UserContext()
+        { 
+            SQLitePCL.Batteries_V2.Init();
+            Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+           
+            // Windows App
+            if (DeviceInfo.Platform == DevicePlatform.WinUI)
+            {
+                optionsBuilder.UseSqlite("Data Source=beers.db");
+            }
+
+            // Android App
+            if (DeviceInfo.Platform == DevicePlatform.Android)
+            {
+                string dbPath = Path.Combine(FileSystem.AppDataDirectory, "beers.db3");
+                optionsBuilder.UseSqlite($"Filename={dbPath}");
+            }
+
+        }
+
+    }
+```
+
+
 # Переход на новую страницу Page
 
 ```Csharp

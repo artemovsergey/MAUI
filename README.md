@@ -374,7 +374,7 @@ namespace HelloApp
 
 # Контейнеры компоновки
 
-### Stack Layout
+# Stack Layout
 
 ```xml
     <StackLayout Spacing="5"
@@ -385,7 +385,7 @@ namespace HelloApp
     </StackLayout>
 ```
 
-### Absolute Layout
+# Absolute Layout
 
 ```xml
         <AbsoluteLayout Margin="20">
@@ -407,7 +407,7 @@ namespace HelloApp
         AbsoluteLayout.LayoutFlags="All" />
     </AbsoluteLayout>
 ```
-### Grid
+# Grid
 
 ```xml
     <Grid ColumnSpacing="5" RowSpacing="8">
@@ -479,7 +479,7 @@ namespace HelloApp
 <Label Text="Hello METANIT.COM!" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
 
 ```
-### Шрифт
+# Шрифт
 
 ```Csharp
 var builder = MauiApp.CreateBuilder();
@@ -492,7 +492,7 @@ builder
 });
 </app>
 ```
-## Button
+# Button
 
 ```xml
 <Button Text="Нажми" FontSize="22" BorderWidth="1"
@@ -501,7 +501,7 @@ builder
         Clicked="OnButtonClicked" />
 ```
 
-## Label
+# Label
 
 ```xml
 <Label FontSize="22" Text = "Hello METANIT.COM!"
@@ -534,7 +534,7 @@ builder
 
 ```
 
-## Поле
+# Поле
 
 ```xml
 Entry Placeholder = "Введите Email" FontFamily="Helvetica"
@@ -557,22 +557,22 @@ Entry Placeholder = "Введите Email" FontFamily="Helvetica"
 
 ```
 
-## Многострочное поле
+# Многострочное поле
 
 ```xml
  <Editor FontSize="16" HeightRequest="200" />
 ```
 
-## BoxView
+# BoxView
 
 BoxView представляет прямоугольную область. Обычно BoxView применяется для создания окрашенных областей, либо в качестве декоративного примитивного графического оформления к другим элементам.
 
-``xml
+```xml
 <BoxView Color="LightBlue" WidthRequest="150" HeightRequest="150" CornerRadius="8"
                  HorizontalOptions="Center" VerticalOptions="Center" />
 ```
 
-## ScrollView
+# ScrollView
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -662,7 +662,7 @@ BoxView представляет прямоугольную область. Об
 
 ```
 
-## DataPicker
+# DataPicker
 
 ```xml
 <DatePicker Format="d" DateSelected="DateSelected">
@@ -671,13 +671,13 @@ BoxView представляет прямоугольную область. Об
 </DatePicker>
 ```
 
-## TimePicker
+# TimePicker
 
 ```xml
  <TimePicker x:Name="timePicker" Time="17:00:00" PropertyChanged="TimePicker_PropertyChanged" />
 ```
 
-## Stepper
+# Stepper
 
 ```xml
 <Stepper Minimum ="0" Maximum="10" Increment ="0.1" VerticalOptions = "Start"
@@ -691,7 +691,7 @@ void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
     }
 ```
 
-## Slider
+# Slider
 
 ```xml
 <Slider Minimum ="0" Maximum="50" Value="30" ValueChanged="OnSliderValueChanged"
@@ -705,7 +705,7 @@ void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
 }
 ```
 
-## Switch
+# Switch
 
 ```xml
 <Switch x:Name="switcher" IsToggled="True" Toggled="switcher_Toggled" />
@@ -717,7 +717,7 @@ void switcher_Toggled(object sender, ToggledEventArgs e)
     }
 ```
 
-## CheckBox
+# CheckBox
 
 ```xml
 <CheckBox x:Name="statusCheckBox" CheckedChanged="CheckBox_CheckedChanged" />
@@ -729,7 +729,7 @@ void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
     }
 ```
 
-## RadioButton
+# RadioButton
 
 ```xml
     <StackLayout RadioButtonGroup.GroupName="languages">
@@ -748,7 +748,7 @@ void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
     }
 ```
 
-## Picker
+# Picker
 
 ```xml
 <Picker x:Name="languagePicker" Title = "Язык программирования"
@@ -767,7 +767,7 @@ void PickerSelectedIndexChanged(object sender, EventArgs e)
     }
 ```
 
-## TableView
+# TableView
 
 ```xml
 <TableView>
@@ -824,7 +824,7 @@ void PickerSelectedIndexChanged(object sender, EventArgs e)
 
 # Сообщения
 
-## DisplayAlert
+# DisplayAlert
 
 ```Csharp
 async void AlertButton_Clicked(object sender, EventArgs e)
@@ -840,7 +840,7 @@ async void AlertButton_Clicked(object sender, EventArgs e)
      
 ```
 
-## DisplayActionSheet
+# DisplayActionSheet
 
 ```Csharp
     async void AlertButton_Clicked(object sender, EventArgs e)
@@ -850,7 +850,7 @@ async void AlertButton_Clicked(object sender, EventArgs e)
     }
 ```
 
-## DisplayPromtAsync
+# DisplayPromtAsync
 
 ```xml
  async void AlertButton_Clicked(object sender, EventArgs e)
@@ -860,7 +860,7 @@ async void AlertButton_Clicked(object sender, EventArgs e)
     }
 ```
 
-## ProgressBar
+# ProgressBar
 
 ```xml
 <StackLayout Padding="20">
@@ -898,9 +898,7 @@ namespace HelloApp
 }
 ```
 
-
-
-## ActivityIndicator
+# ActivityIndicator
 
 ```xml
 ActivityIndicator IsRunning="true" Color="SeaGreen" />
@@ -1003,7 +1001,7 @@ namespace HelloApp
         <ResourceDictionary Source="/Resources/Styles/GreenButtonStyle.xaml" />
     </ContentPage.Resources>
 ```
-## Css
+# Css
 
 ```css
 ^contentpage {
@@ -1056,7 +1054,7 @@ stacklayout {
     </ContentPage.Resources>
 ```
 
-## Visual State Manager и визуальные состояния
+# Visual State Manager и визуальные состояния
 
 Visual State Manager (менеджер визуальных состояний) позволяет организовать изменения визуального интерфейса. По умолчанию Visual State Manager прикрепляет к элементам управления группу из трех состояний:
 
@@ -1124,7 +1122,7 @@ Visual State Manager (менеджер визуальных состояний) 
     </ContentPage.Resources>
 ```
 
-## Доступные визуальные состояния
+# Доступные визуальные состояния
 
 В .NET MAUI для ряда элементов есть дополнительные состояния:
 
@@ -1170,7 +1168,7 @@ https://metanit.com/sharp/maui/5.5.php
 
 Есть два способа установить привязку - с помощью свойства BindingContext и с помощью объекта Binding. Рассмотрим на примерах, как устанавливается привязка в коде C# и в коде XAML.
 
-## Свойство BindingContext
+# Свойство BindingContext
 
 Для установки привязки у объекта-цели устанавливается свойство BindingContext. В качестве значения оно принимает источник привязки.
 ```xml
@@ -1187,7 +1185,7 @@ https://metanit.com/sharp/maui/5.5.php
 </ContentPage>
 ```
 
-## Свойство Binding
+# Свойство Binding
 
 ```xml
     <StackLayout Padding="20">
@@ -1196,7 +1194,7 @@ https://metanit.com/sharp/maui/5.5.php
     </StackLayout>
 ```
 
-## StringFormat
+# StringFormat
 
 ```xml
 <Entry WidthRequest="100" HeightRequest="20" Placeholder="Name" x:Name="textBox"/>
@@ -1206,7 +1204,7 @@ https://metanit.com/sharp/maui/5.5.php
  />
 ```
 
-## Конвертер значений
+# Конвертер значений
 
 Прежде всего класс конвертера значений должен реализовать интерфейс IValueConverter. Этот интерфейс определяет два метода: Convert(), который преобразует пришедшее от привязки значение в тот тип, который понимается приемником привязки, и ConvertBack(), который выполняет противоположную операцию.
 
@@ -1256,7 +1254,7 @@ public class DateTimeToLocalDateConverter : IValueConverter
 </ContentPage>
 ```
 
-## Пример использования конвертера
+# Пример использования конвертера
 
 ```Csharp
 public class StringToStatusConverter : IValueConverter
@@ -1292,7 +1290,7 @@ public class StringToStatusConverter : IValueConverter
         </Label>
 ```
 
-## Параметры конвертера
+# Параметры конвертера
 
 ```Csharp
 public class StringToCurrencyConverter : IValueConverter
@@ -1319,7 +1317,7 @@ public class StringToCurrencyConverter : IValueConverter
                 </Binding>
 ```
 
-## Относительная привязка
+# Относительная привязка
 
 https://metanit.com/sharp/maui/6.8.php
 
@@ -1334,7 +1332,7 @@ https://metanit.com/sharp/maui/6.8.php
     </Entry.Triggers>
 </Entry>
 ```
-## Тригеры как стили
+# Тригеры как стили
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -1357,7 +1355,8 @@ https://metanit.com/sharp/maui/6.8.php
     </StackLayout>
 </ContentPage>
 ```
-## Тригеры событий
+
+# Тригеры событий
 
 ```Csharp
 public class EntryValidation : TriggerAction<Entry>
@@ -1389,7 +1388,7 @@ public class EntryValidation : TriggerAction<Entry>
     </StackLayout>
 </ContentPage>
 ```
-## Триггеры данных
+# Триггеры данных
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -1412,7 +1411,8 @@ public class EntryValidation : TriggerAction<Entry>
     </StackLayout>
 </ContentPage>
 ```
-## Мультитриггеры
+
+# Мультитриггеры
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -1443,7 +1443,7 @@ public class EntryValidation : TriggerAction<Entry>
 
 # ListView
 
-## Обработка выбора элемента
+# Обработка выбора элемента
 
 Когда пользователь нажимает на элемент списка, он выделяется, а у ListView срабатывают два события: ItemTapped и ItemSelected. Между ними есть различия. Так, повторное нажатие на один и тот же элемент не вызовет повторного события ItemSelected, так как элемент остается выбанным. А вот событие ItemTapped будет срабатывать именно столько раз сколько пользователь нажал на него, даже повторно. Также событие ItemSelected будет вызвано, если с элемента будет снято выделение.
 
@@ -1544,7 +1544,7 @@ private void UsersListView_ItemTapped(object sender, ItemTappedEventArgs e)
             </ListView.ItemTemplate>
         </ListView>
 ```
-## Header and Footer in ListView
+# Header and Footer in ListView
 
 ```xml
 <ListView RowHeight="50" x:Name="listView" ItemsSource="{Binding People}" >
@@ -1652,7 +1652,7 @@ https://metanit.com/sharp/maui/8.9.php
             });
 ```
 
-## Событие изменение элемента в карусели 
+# Событие изменение элемента в карусели 
 
 ```Csharp
     private void carouselView_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
@@ -1704,7 +1704,7 @@ https://metanit.com/sharp/maui/8.9.php
     </CollectionView>
 ```
 
-### Команда для CollectionView
+# Команда для CollectionView
 
 ```Csharp
 SelectCommand = new Command<Person?>(p =>
@@ -1753,7 +1753,7 @@ SelectCommand = new Command<Person?>(p =>
 
 https://metanit.com/sharp/maui/12.3.php
 
-## Навигация через AppShell
+# Навигация через AppShell
 
 ```Csharp
         [RelayCommand]
@@ -1831,9 +1831,6 @@ https://github.com/dotnet/docs-maui/blob/main/docs/fundamentals/shell/navigation
             <Label Text="Нажать"/>
         </Frame>
 ```
-
-
-
 
 # Удаление с помощью Swipe (Android)
 

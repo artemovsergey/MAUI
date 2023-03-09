@@ -260,13 +260,13 @@ builder.Services.AddSingleton<IDataService, DataService>();
 
 # Вызов асинхронных методов
 
-Команды также могут вызывать асинхронные методы. Это достигается использованием ключевых слов asyncи awaitпри указании Executeметода:
+Команды также могут вызывать асинхронные методы. Это достигается использованием ключевых слов async и await при указании Execute метода:
 
 ```Csharp
 DownloadCommand = new Command (async () => await DownloadAsync ());
 ```
 
-Это указывает на то, что DownloadAsyncметод является Taskи его следует ожидать:
+Это указывает на то, что DownloadAsync метод является Task и его следует ожидать:
 
 ```Csharp
 async Task DownloadAsync ()
@@ -297,7 +297,7 @@ public static class MauiProgram
                 });
 
                 #if DEBUG
-		                builder.Logging.AddDebug();
+		builder.Logging.AddDebug();
                 #endif
 
 

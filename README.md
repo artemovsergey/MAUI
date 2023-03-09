@@ -113,6 +113,21 @@ public class UserContext : DbContext
     }
 ```
 
+# ViewModel for CommunityToolkit.Mvvm
+
+```Csharp
+public partial class MainViewModel : ObservableObject
+    {
+        [ObservableProperty]
+        string test;
+
+        [RelayCommand]
+        void SayText()
+        {
+            Test = "text1";
+        }
+    }
+```
 
 # Переход на новую страницу Page
 
@@ -1860,22 +1875,6 @@ https://github.com/dotnet/docs-maui/blob/main/docs/fundamentals/shell/navigation
 
 ```xml
 x:DataType="viewmodel:MainViewModel"
-```
-
-# ViewModel for CommunityToolkit.Mvvm
-
-```Csharp
-public partial class MainViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        string test;
-
-        [RelayCommand]
-        void SayText()
-        {
-            Test = "text1";
-        }
-    }
 ```
 
 # Проверка доступа в интернет

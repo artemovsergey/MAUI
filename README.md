@@ -158,6 +158,9 @@ public partial class MainViewModel : ObservableObject
     }
 ```
 
+**Замечание**: команда будет называться ```SayTextCommand```, даже если метод будет называться SaytextAsync.
+
+
 # Переход на новую страницу Page
 
 ```Csharp

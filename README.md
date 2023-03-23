@@ -158,7 +158,7 @@ public partial class MainViewModel : ObservableObject
     }
 ```
 
-**Замечание**: команда будет называться ```SayTextCommand```, даже если метод будет называться SaytextAsync.
+**Замечание**: команда будет называться ```SayTextCommand```, даже если метод будет называться SayTextAsync.
 
 
 # Переход на новую страницу Page

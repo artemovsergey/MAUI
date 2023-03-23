@@ -419,7 +419,7 @@ namespace HelloApp
     </StackLayout>
 </ContentPage>
 ```
-![https://metanit.com/sharp/maui/pics/4.1.png]()
+![](https://metanit.com/sharp/maui/pics/4.1.png)
 
 # Выравнивание
 

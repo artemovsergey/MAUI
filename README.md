@@ -71,8 +71,37 @@ public static class MauiProgram
         return builder.Build();
 	}
 }
-```
 
+
+В частности, MauiAppBuilder определяет следующие методы:
+
+- UseMauiApp: устанавливает класс, который и определяет визуальный интерфейс и логику приложения. Данный класс должен представлять тип Microsoft.Maui.IApplication (в данном случае класс App наследуется от класса Application, который реализует интерфейс IApplication)
+
+- ConfigureContainer: устанавливает фабрику провайдера сервисов
+
+- ConfigureAnimations: устанавливает применяемые анимации
+
+- ConfigureEffects: устанавливает глобальные эффекты приложения
+
+- ConfigureFonts: настраивает глобальные шрифты приложения
+
+- ConfigureEssentials: устанавливает ряд настроек приложения, в частности, версионирование и ключ для картографических сервисов
+
+- ConfigureImageSources: переопределяет источник изображений
+
+- ConfigureMauiHandlers: устанавливает кастомные обработчик для событий визуальных элементов
+
+- LoadFromXaml: загружает определение интерфейса из файла xaml
+
+Кроме того, класс MauiAppBuilder имеет ряд свойств:
+
+- Configuration: позволяет управлять конфигурацией приложения
+
+- Services: устанавливает сервисы приложения
+
+- Logging: устанавливает настройки логгирования
+
+```
 
 # Context
 
@@ -279,66 +308,6 @@ void Download ()
     ...
 }
 ```
-
-# MauiProgram.cs
-
-```Csharp
-public static class MauiProgram
-    {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
-
-                #if DEBUG
-		builder.Logging.AddDebug();
-                #endif
-
-
-            builder.Services.AddTransient<MainPage>();
-
-            builder.Services.AddTransient<PersonViewModel>();
-
-            return builder.Build();
-        }
-    }
-    
-    
-```
-
-В частности, MauiAppBuilder определяет следующие методы:
-
-- UseMauiApp: устанавливает класс, который и определяет визуальный интерфейс и логику приложения. Данный класс должен представлять тип Microsoft.Maui.IApplication (в данном случае класс App наследуется от класса Application, который реализует интерфейс IApplication)
-
-- ConfigureContainer: устанавливает фабрику провайдера сервисов
-
-- ConfigureAnimations: устанавливает применяемые анимации
-
-- ConfigureEffects: устанавливает глобальные эффекты приложения
-
-- ConfigureFonts: настраивает глобальные шрифты приложения
-
-- ConfigureEssentials: устанавливает ряд настроек приложения, в частности, версионирование и ключ для картографических сервисов
-
-- ConfigureImageSources: переопределяет источник изображений
-
-- ConfigureMauiHandlers: устанавливает кастомные обработчик для событий визуальных элементов
-
-- LoadFromXaml: загружает определение интерфейса из файла xaml
-
-Кроме того, класс MauiAppBuilder имеет ряд свойств:
-
-- Configuration: позволяет управлять конфигурацией приложения
-
-- Services: устанавливает сервисы приложения
-
-- Logging: устанавливает настройки логгирования
 
 # Динамическая загрузка XAML
 

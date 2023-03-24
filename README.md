@@ -141,6 +141,11 @@ public class UserContext : DbContext
 
     }
 ```
+**Замечание**: Не работает подключение к контексту данных через ```AddDbContext``` в ```MauiProgram.cs```. Работает через
+переопределение метода класса ```DbContext``` ```OnConfiguring```. Также строку подключения воспринимает через ```App.config```.
+При подключении к ```PostgreSQL``` важен регистр названий таблиц и атрибутов.
+
+
 
 # ViewModel for CommunityToolkit.Mvvm
 

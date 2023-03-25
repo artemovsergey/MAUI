@@ -5,6 +5,10 @@
 
 dotnet:
 
+https://github.com/dotnet/maui-samples
+
+https://www.telerik.com/blogs/going-desktop-dotnet-maui
+
 https://dotnet.microsoft.com/en-us/learn
 
 https://dotnet.microsoft.com/en-us/download/e-book/microservices-architecture/pdf

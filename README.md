@@ -72,6 +72,15 @@ public static class MauiProgram
         //builder.Services.AddDbContext<DataContext>(options => options.UseSqlite(connection));
         builder.Services.AddTransient<UserContext>();
 		
+	//builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
+
+	//builder.Services.AddSingleton<MainPage>();
+	//builder.Services.AddSingleton<MainViewModel>();
+
+        //builder.Services.AddTransient<DetailPage>();
+        //builder.Services.AddTransient<DetailViewModel>();
+	
+	
         return builder.Build();
 	}
 }

@@ -3,45 +3,27 @@
 
 # Тематический сайт
 
-dotnet:
-
-https://github.com/dotnet/maui-samples
-
 https://www.telerik.com/blogs/going-desktop-dotnet-maui
 
 https://dotnet.microsoft.com/en-us/learn
-
-https://dotnet.microsoft.com/en-us/download/e-book/microservices-architecture/pdf
-
-https://dotnet.microsoft.com/en-us/download/e-book/aspnet/pdf
 
 https://github.com/dotnet/docs/blob/main/docs/architecture/maui/micro-services.md
 
 https://dotnet.microsoft.com/en-us/learn/dotnet/architecture-guides
 
-
-MAUI
-
 https://github.com/dotnet/docs/tree/main/docs/architecture/maui
 
 https://github.com/dotnet-architecture/eshop-mobile-client?WT.mc_id=dotnet-35129-website
 
-
 MAUIMAN.dev
-
-https://vladislavantonyuk.github.io/
-
-https://jesseliberty.com/
 
 https://learn.microsoft.com/en-us/training/paths/build-apps-with-dotnet-maui/
 
-https://vladislavantonyuk.github.io/
-
 https://github.com/VladislavAntonyuk/MauiSamples
 
-https://github.com/naweed/MauiTubePlayer
 
-https://github.com/naweed/MauiPlanets
+
+
 
 
 # MauiProgram

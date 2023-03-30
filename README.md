@@ -1700,7 +1700,7 @@ SelectCommand = new Command<Person?>(p =>
                         SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
 ```
 
-# Navigation
+# Навигация по страницам Page
 
 ```Csharp
  [RelayCommand]

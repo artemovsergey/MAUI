@@ -144,6 +144,15 @@ public class UserContext : DbContext
 
 # ViewModel for CommunityToolkit.Mvvm
 
+**Замечание**: подключение пакета ```CommunityToolkit.Mvvm```
+
+MauiProgram.cs
+
+```Csharp
+.UseMauiCommunityToolkit()
+```
+
+
 ```Csharp
 public partial class MainViewModel : ObservableObject
     {

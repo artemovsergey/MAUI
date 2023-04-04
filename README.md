@@ -140,6 +140,43 @@ public class UserContext : DbContext
 переопределение метода класса ```DbContext``` ```OnConfiguring```. Также строку подключения воспринимает через ```App.config```.
 При подключении к ```PostgreSQL``` важен регистр названий таблиц и атрибутов.
 
+# Behavior and Event
+
+Package: ```Community.Toolkit.Maui```
+
+```xml
+<ContentPage
+    x:Class="CommunityToolkit.Maui.Sample.Pages.MyPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+</ContentPage>
+```
+
+В файле MauiProgram.cs поключить ```.UseMauiCommunityToolkit()```
+
+```Csharp
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseMauiCommunityToolkit()
+    .ConfigureFonts(fonts =>
+    {
+	fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+	fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+    });
+```
+
+```xml
+<Button>
+    <Button.Behaviors>
+	<toolkit:EventToCommandBehavior
+	EventName="Clicked"
+	Command="{Binding TestCommand}" />
+    </Button.Behaviors>
+</Button>
+```
+
 
 
 # ViewModel for CommunityToolkit.Mvvm

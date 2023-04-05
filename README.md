@@ -6,9 +6,9 @@
 
 <a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Context"> Context </a>
 
-<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Behavior and Event"> Behavior and Event </a>
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Behavior-and-Event"> Behavior and Event </a>
 
-<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#CommunityToolkit.Mvvm"> CommunityToolkit.Mvvm </a>
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#CommunityToolkitMvvm"> CommunityToolkit.Mvvm </a>
 
 <a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Переход на новую страницу Page"> Переход на новую страницу Page </a>
 

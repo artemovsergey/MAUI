@@ -1,7 +1,9 @@
 В .NET MAUI графический интерфейс состоит из страниц. Каждая страница представляет собой объект класса Page. Страница занимает все пространство экрана. То есть то, что мы видим на экране мобильного устройства или в окне десктопного приложения - это страница. Приложение может иметь одну или несколько страниц.
 
-<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#mauiprogram"> MAUIProgram </a>
+# Оглавление
 
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#mauiprogram"> MAUIProgram </a>
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Context"> MAUIProgram </a>
 
 
 # Тематический сайт

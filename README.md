@@ -6,29 +6,137 @@
 
 <a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Context"> Context </a>
 
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Behavior and Event"> Behavior and Event </a>
 
-# Тематический сайт
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#CommunityToolkit.Mvvm"> CommunityToolkit.Mvvm </a>
 
-https://www.telerik.com/blogs/going-desktop-dotnet-maui
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Переход на новую страницу Page"> Переход на новую страницу Page </a>
 
-https://dotnet.microsoft.com/en-us/learn
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Развертывание приложения Android на телефоне"> Развертывание приложения Android на телефоне </a>
 
-https://github.com/dotnet/docs/blob/main/docs/architecture/maui/micro-services.md
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Переключение на исполняемый файл exe вместо msix"> Переключение на исполняемый файл exe вместо msix </a>
 
-https://dotnet.microsoft.com/en-us/learn/dotnet/architecture-guides
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Базовая ViewModel"> Базовая ViewModel </a>
 
-https://github.com/dotnet/docs/tree/main/docs/architecture/maui
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Реализация команды ViewModel"> Реализация команды ViewModel </a>
 
-https://github.com/dotnet-architecture/eshop-mobile-client?WT.mc_id=dotnet-35129-website
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Подключение ViewModel в View"> Подключение ViewModel в View </a>
 
-MAUIMAN.dev
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Внедрение зависимостей DI для сервиса"> Внедрение зависимостей DI для сервиса </a>
 
-https://learn.microsoft.com/en-us/training/paths/build-apps-with-dotnet-maui/
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Вызов асинхронных методов"> Вызов асинхронных методов </a>
 
-https://github.com/VladislavAntonyuk/MauiSamples
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Динамическая загрузка XAML"> Динамическая загрузка XAML </a>
 
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Контейнеры компоновки"> Контейнеры компоновки </a>
 
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Stack Layout"> Stack Layout </a>
 
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Absolute Layout"> Absolute Layout </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Grid"> Grid </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Размеры"> Размеры </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Margin and Padding"> Margin and Padding </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Выравнивание"> Выравнивание </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Color"> Color </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Стилизация текста"> Стилизация текста </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Шрифт"> Шрифт </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Button"> Button </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Label"> Label </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Поле"> Поле </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Многострочное поле"> Многострочное поле </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#BoxView"> BoxView </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#ScrollView"> ScrollView </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Image"> Image </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Frame"> Frame </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#DataPicker"> DataPicker </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#TimePicker"> TimePicker </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Stepper"> Stepper </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Slider"> Slider </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Switch"> Switch </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#CheckBox"> CheckBox </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#RadioButton"> RadioButton </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Picker"> Picker </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#TableView"> TableView </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Сообщения"> Сообщения </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#ProgressBar"> ProgressBar </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#ActivityIndicator"> ActivityIndicator </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Ресурсы"> Ресурсы </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Стили"> Стили </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Css"> Css </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Visual State Manager"> Visual State Manager </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Привязка"> Привязка </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#StringFormat"> StringFormat </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Конвертер значений"> Конвертер значений </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Тригеры как стили"> Тригеры как стили </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Тригеры событий"> Behavior and Event </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Триггеры данных"> Триггеры данных </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Мультитриггеры"> Мультитриггеры </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#ListView"> ListView </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Cashing"> Cashing </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#CarouselView"> CarouselView </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Сообщение из ViewModel"> Сообщение из ViewModel </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#CollectionView"> CollectionView </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Команда для CollectionView"> Команда для CollectionView </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Навигация по страницам Page"> Навигация по страницам Page </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Навигация через AppShell"> Навигация через AppShell </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Tap"> Tap </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Удаление с помощью Swipe (Android)">Удаление с помощью Swipe (Android) </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Тип данных ViewModel для Page"> Тип данных ViewModel для Page </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Проверка доступа в интернет"> Проверка доступа в интернет </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Animation"> Animation </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Источники"> Источники </a>
 
 
 
@@ -185,7 +293,7 @@ builder
 
 
 
-# ViewModel for CommunityToolkit.Mvvm
+# CommunityToolkit.Mvvm
 
 **Замечание**: подключение пакета ```CommunityToolkit.Mvvm```
 
@@ -1078,8 +1186,7 @@ stacklayout {
     </ContentPage.Resources>
 ```
 
-# Visual State Manager и визуальные состояния
-
+# Visual State Manager
 Visual State Manager (менеджер визуальных состояний) позволяет организовать изменения визуального интерфейса. По умолчанию Visual State Manager прикрепляет к элементам управления группу из трех состояний:
 
 - Disabled: элемент отключен для использования
@@ -1962,6 +2069,25 @@ protected override async void OnAppearing()
     }
 ```
 
+# Источники
+
+https://www.telerik.com/blogs/going-desktop-dotnet-maui
+
+https://dotnet.microsoft.com/en-us/learn
+
+https://github.com/dotnet/docs/blob/main/docs/architecture/maui/micro-services.md
+
+https://dotnet.microsoft.com/en-us/learn/dotnet/architecture-guides
+
+https://github.com/dotnet/docs/tree/main/docs/architecture/maui
+
+https://github.com/dotnet-architecture/eshop-mobile-client?WT.mc_id=dotnet-35129-website
+
+MAUIMAN.dev
+
+https://learn.microsoft.com/en-us/training/paths/build-apps-with-dotnet-maui/
+
+https://github.com/VladislavAntonyuk/MauiSamples
 
 
 

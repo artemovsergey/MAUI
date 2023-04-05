@@ -3,7 +3,8 @@
 # Оглавление
 
 <a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#mauiprogram"> MAUIProgram </a>
-<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Context"> MAUIProgram </a>
+
+<a href="https://github.com/artemovsergey/MAUI/blob/master/README.md#Context"> Context </a>
 
 
 # Тематический сайт

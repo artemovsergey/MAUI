@@ -1949,6 +1949,74 @@ https://learn.microsoft.com/en-us/training/paths/build-apps-with-dotnet-maui/
 
 https://github.com/VladislavAntonyuk/MauiSamples
 
+# Жизненный цикл приложения
 
+```Csharp
+public partial class App : Application
+{
+    public App()
+    {
+
+        InitializeComponent();
+
+        //MainPage = new AppShell();
+
+        //MainPage = new NavigationPage(new MainPage());
+        MainPage = new MainPage();
+
+    }
+
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+    }
+
+    protected override void OnSleep()
+    {
+        base.OnSleep();
+    }
+
+
+    protected override void OnResume()
+    {
+        base.OnResume();
+    }
+
+    protected override Window CreateWindow(IActivationState activationState)
+    {
+     
+        Window window = base.CreateWindow(activationState);
+        window.Created += (s, e) => 
+        {
+            Debug.WriteLine("PassXYZ.Vault.App: 1. Created event");
+        };
+
+            window.Activated += (s, e) => {
+            Debug.WriteLine("PassXYZ.Vault.App: 2. Activated event");
+        };
+            window.Deactivated += (s, e) => {
+            Debug.WriteLine("PassXYZ.Vault.App: 3. Deactivated event");
+        };
+ 
+            window.Stopped += (s, e) => {
+            Debug.WriteLine("PassXYZ.Vault.App: 4. Stopped event");
+       };
+       
+            window.Resumed += (s, e) =>
+        {
+            Debug.WriteLine("PassXYZ.Vault.App: 5. Resumed event");
+        };
+        
+            window.Destroying += (s, e) => {
+            Debug.WriteLine("PassXYZ.Vault.App: 6. Destroying event");
+    };
+
+
+    return window;
+    }
+    
+}
+```
 
 

@@ -2019,4 +2019,12 @@ public partial class App : Application
 }
 ```
 
+# Font Awesome
+
+https://fontawesome.com/docs/web/setup/get-started
+
+
+
+
+
 

@@ -2024,6 +2024,8 @@ public partial class App : Application
 https://fontawesome.com/docs/web/setup/get-started
 https://github.com/andreinitescu/IconFont2Code
 
+# Localization
+
 
 
 

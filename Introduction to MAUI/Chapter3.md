@@ -450,6 +450,369 @@ A singleton registration means that there will only ever be one instance
 of the object. So, based on the example of our Baker needing to use an
 IWeighingScale, we register it as follows:  
   
+```Csharp
+builder.Services.AddSingleton<IWeighingScale, WeighingScale>();
+```
+Then every time that an IWeighingScale is resolved, we will be
+provided with the same instance. This suits the weighing scale example
+because we use the same one throughout our baking process.  
+  
+---
+It is extremely unlikely that you will ever need to register a view
+model as a singleton. Doing so can introduce bits of behavior that you
+are most likely not expecting on top of the fact that you can run the
+risk of leaking memory.
+---
+  
+## AddTransient  
+  
+ A transient registration is the opposite of a singleton. Every time an
+implementation is resolved, a new instance is created and provided. So
+based on the example of our Baker needing to use an IWeighingScale, we
+register it as follows: 
+  
+```Csharp
+builder.Services.AddTransient<IWeighingScale, WeighingScale>();
+```
+As mentioned, every time an IWeighingScale is resolved, we will
+be provided with a new instance. A better example here might be the
+greaseproof paper that lines the cake tins. They are used once and
+thrown away.  
+  
+## AddScoped  
+  
+A scoped registration is somewhere in the middle of a singleton and
+transient. A single instance will be provided for a “scope,” and then when
+a new scope is created, a new instance will be provided for the life of
+that scope.  
+  
+```Csharp
+builder.Services.AddScoped<IWeighingScale, WeighingScale>();
+```
+  
+This type of registration feels much better suited to a web application
+where requests come in and a scope will represent a single request. In the
+mobile and desktop world, your application typically has a single state and
+therefore is less likely to need scoped registrations. Currently .NET MAUI
+does not provide any automatic creations of scopes, but you have the
+power to create your own using the IServiceScopeFactory interface and
+ultimately its implementation.  
+  
+# Application Lifecycle  
+  
+Sadly, no two platforms provide the same set of behaviors or lifecycle
+events such as when an application is started, backgrounded, or closed.
+This is where cross-platform frameworks provide us with a solid set
+of encapsulated events to cover most scenarios. There are four main
+application states in a .NET MAUI application.  
+  
+## Application States
+  
+These are the application states:
+• Not running: This means that the application has
+not been started and is not loaded into memory. This
+is typically when the application has been installed,
+the device has been powered on, the application
+was closed by the user, or the operating system has
+terminated the application to free up some resources.
+• Running: This means that the application is visible and
+is focused.
+• Deactivated: This means that the application is no
+longer focused but may still be visible. On mobile, this
+could mean that the operating system is showing a permission request alert (e.g., an application asking for
+permission to use the camera) or similar.
+• Stopped: This means that the application is no longer
+visible.  
+  
+You can now see how a .NET MAUI application moves between the
+above four states and the events that are triggered to an application.
+Figure 3-3 shows the possible states that a .NET MAUI application can take
+during its lifetime and how it transitions between those states.  
+  
+![image](https://user-images.githubusercontent.com/26972859/231094374-72c17a79-ea47-424c-b2c3-5ddfd20471e9.png)
+Figure 3-3. Application state lifecycle chart  
+  
+Before we dive into the details of each of the events that are fired
+between the state transitions, I need to give you some background on
+how they can be accessed and why. In order to access these events, you
+must access the Window class. It certainly isn’t a common concept to have
+a window in a mobile application, but you must appreciate that you are
+dealing with a cross-platform framework and therefore an approach that
+fits desktop as well as mobile. I see it as follows: a mobile application is a
+single window application, and a desktop is likely to be multi-window.  
+  
+ # Lifecycle Events
+  
+ Now on to the events that move an application between states.
+• Created: This event is raised after the platform window
+has been created. Note that the window may not be
+visible yet.
+• Activated: This event is raised when the window is the
+focused window.
+• Deactivated: This event is raised when the window is
+no longer the focused window. Note that the window
+may still be visible.
+• Stopped: This event is raised when the window is no
+longer visible. The application may resume from this
+state but it is not guaranteed, so it is recommended that
+you cancel any long-running processes or anything
+that may consume resources on the device. Mobile
+operating systems are much stricter on what can
+happen in the background.
+• Resumed: This event is raised when an application
+resumes from the Stopped state. It is recommended
+to prepare your application for full use again (e.g.,
+subscribe to events or messages, refresh any visible
+content).
+• Destroying: This event is raised when the platform
+window is being destroyed and removed from memory.
+It is recommended that you unsubscribe from events or
+messages. 
+  
+ # Handling Lifecycle Events 
+  
+ By default, a .NET MAUI application won’t give you access to the lifecycle
+events; this is something you must opt in for. In order to opt in, you must
+modify your App class.
+Open Visual Studio. You need to add a new class to your project and
+call it StateAwareWindow. Your new class will need to be modified so it
+looks as follows: 
+  
+```Csharp
+public class StateAwareWindow: Window
+{
+ public StateAwareWindow() : base()
+ {
+ }
+ public StateAwareWindow(Page page) : base(page)
+ {
+ }
+ protected override void OnCreated()
+ {
+ // Initialise our application
+ }
+}
+```
+Inside of your application, you can override all methods that will
+be executed when the specific event occurs. Each override method
+follows the naming of the events, as described previously, with a prefix
+of On. Therefore, to handle the Activated event, you override the
+OnActivated method.
+The final step is to make use of the new class, so inside your App.xaml.
+cs file, add the following:
+  
+```Csharp
+protected override Window CreateWindow(IActivationState
+activationState)
+{
+ return new StateAwareWindow(MainPage);
+}
+```
+This will create a new instance of StateAwareWindow and pass it a
+reference to the application’s MainPage. If you do not pass in a reference
+to a Page to the Window implementation, you will experience exceptions
+being thrown.  
+  
+# Cross-Platform Mappings to Platform Lifecycle Events  
+  
+I strongly believe that despite the fact that .NET MAUI provides us with
+these events, you should understand how they map to the underlying
+platforms. If you understand what is being called on the platform-specific
+side, it can really help to diagnose things when they go wrong or perhaps
+point you in the direction of a better approach for your scenarios.
+Let’s break down how the .NET MAUI lifecycle events map to the
+platform-specific events and then show off the bits that are not mapped if
+you ever need to use them. See Table 3-1.  
+  
+ **Table 3-1**. Cross-Platform Lifecycle Events Mapped to the PlatformSpecific Events
+  
+  |Event|Android|iOS/MacCatalyst|Windows|
+  |:---|:----|:---|:---|
+  |Created|OnPostCreate|FinishedLaunching|Created|
+  |Activated|OnResume|OnActivated|Activated(Code Activated and Pointer Activated)|
+  |Deactivated|OnPause|OnResignActivation|Activated|(Deactivated)|
+  |Stopped|OnStop|DidEnterBackground|Visibility Changed|
+  |Resumed|OnRestart|WillEnterForeground|Resumed|
+  |Destroying|OnDestroy|WillTerminate|Closed|
+  
+  This list may not provide too much meaning right now and I wouldn’t
+worry yourself with needing to know this. The aim here is to provide you
+with a quick look-up to be able to then research if any lifecycle events are
+going wrong or possibly not the right fit for your solution.
+  
+## Platform-Specific Lifecycle Events
+
+There are actually many platform-specific lifecycle events that .NET MAUI
+does not map to. What .NET MAUI does provide is a set of lifecycle events
+that map consistently across all platforms. The rest in this section are really
+specific to each individual platform. I won’t be covering all of the details of
+each individual event; however, I will cover how to make use of one so that
+you will know how to make use of an event that better suits your use case.
+---
+When searching for information around a platform-specific
+event, don’t feel constrained to searching for .NET MAUI-specific
+documentation. You have the power to leverage the platform APIs. You
+should be able to search for information in the context of Android or
+iOS and the code should be relatively easy to translate into C#.
+---
+In order to register for a platform-specific event, you need to make use
+of the ConfigureLifecycleEvents method on the MauiAppBuilder class.
+Let’s look at a concrete example for each platform. The code in each of the
+following examples is largely the same but the duplication has been kept to
+show the bigger picture. I have highlighted the differences in bold to show
+the key differences.
+  
+# Android  
+  
+To receive a notification for an Android lifecycle event, you call the
+ConfigureLifecycleEvents method on the MauiAppBuilder object. You
+can then make use of the AddAndroid method and specify the events you
+wish to handle and how you wish to handle them.  
+  
+```Csharp
+using Microsoft.Maui.LifecycleEvents;
+namespace WidgetBoard;
+public static class MauiProgram
+{
+ public static MauiApp CreateMauiApp()
+ {
+ var builder = MauiApp.CreateBuilder();
+ builder
+ .UseMauiApp<App>()
+ .ConfigureLifecycleEvents(events =>
+  {
+#if ANDROID
+ events.AddAndroid(lifecycle=>
+ lifecycle.OnStart((activity) =>
+OnStart(activity)));
+ static void OnStart(Activity activity)
+ {
+ // Perform your OnStart logic
+ }
+#endif
+ });
+ return builder.Build();
+ }
+}
+   
+```
+For more information on the available lifecycle events, I recommend
+checking out the following documentation pages:
+Microsoft: https://learn.microsoft.com/dotnet/maui/
+fundamentals/app-lifecycle#android
+Android: https://developer.android.com/guide/components/
+activities/activity-lifecycle
+  
+ # iOS and MacCatalyst 
+  
+ To receive a notification for an iOS lifecycle event, you call the
+ConfigureLifecycleEvents method on the MauiAppBuilder object. You
+can then make use of the AddiOS method and specify the events you wish
+to handle and how you wish to handle them.
+  
+using Microsoft.Maui.LifecycleEvents;
+namespace WidgetBoard;
+public static class MauiProgram
+  
+{
+ public static MauiApp CreateMauiApp()
+ {
+ var builder = MauiApp.CreateBuilder();
+ builder
+ .UseMauiApp<App>()
+ .ConfigureLifecycleEvents(events =>
+ {
+#if IOS || MACCATALYST
+ events.AddiOS(lifecycle =>
+ lifecycle.OnActivated((app) =>
+OnActivated(app)));
+ static void OnActivated(UIKit.UIApplication
+application)
+ {
+ // Perform your OnActivated logic
+ }
+#endif
+ });
+ return builder.Build();
+ }
+}  
+  
+For more information on the available lifecycle events, I recommend
+checking out the following documentation pages:
+Microsoft: https://learn.microsoft.com/dotnet/maui/
+fundamentals/app-lifecycle#ios
+iOS: https://developer.apple.com/documentation/uikit/app_and_
+environment/managing_your_app_s_life_cycle?language=objc  
+  
+# Windows  
+  
+To receive a notification for a Windows lifecycle event, you call the
+ConfigureLifecycleEvents method on the MauiAppBuilder object. You
+can then make use of the AddWindows method and specify the events you
+wish to handle and how you wish to handle them.
+  
+```Csharp
+using Microsoft.Maui.LifecycleEvents;
+namespace WidgetBoard;
+public static class MauiProgram
+{
+ public static MauiApp CreateMauiApp()
+ {
+ var builder = MauiApp.CreateBuilder();
+ builder
+ .UseMauiApp<App>()
+ .ConfigureLifecycleEvents(events =>
+ {
+#if WINDOWS
+ events.AddWindows(lifecycle =>
+ lifecycle.OnActivated((window, args) =>
+OnActivated(window, args)));
+ static void OnActivated(Microsoft.
+UI.Xaml.Window window, Microsoft.UI.Xaml.
+WindowActivatedEventArgs args)
+ {
+ // Perform your OnActivated logic
+ }
+#endif
+ });
+  
+  return builder.Build();
+ }
+}
+  
+```
+  
+For more information on the available lifecycle events, I recommend
+checking out the following documentation page:
+Microsoft: https://learn.microsoft.com/dotnet/maui/
+fundamentals/app-lifecycle#windows  
+  
+---
+You may have noticed the usage of #if statements. Due to the
+nature of compiling for multiple platforms in a single project, you
+will need to write platform-specific code. If, like me, you do not like
+the #if statement or at would like to keep its usage to a minimum,
+then fear not: we will be taking a closer look at minimizing it in
+Chapter 13.
+---
+  
+# Summary  
+  
+In this chapter, you have
+• Walked through the main components of a .NET MAUI
+application
+• Earned a tea break
+• Learned about the start-up process
+• Learned about the life of a .NET MAUI application
+  
+In the next chapter, you will
+• Learn about the different possibilities you have to
+architect your applications
+• Decide on what architecture to use
+• Walk through a concrete example by creating your
+ClockWidget
+• Learn how to further optimize your implementation
+using NuGet packages  
   
   
   

@@ -1051,7 +1051,10 @@ two service interfaces: IDataStore and IUserService. We improved the login proce
 making changes in the view, view model, and service layers. In the service layer, we are still using the
 MockDataStore class. However, we haven’t finalized the implementation in the IDataStore
 service to perform the actual login activities yet. We will leave this to the next chapter.   
-   
+In the next chapter, we will explain dependency injection in .NET MAUI, which is a major difference
+compared to Xamarin.Forms. We will learn how to register our services via dependency injection and
+how to initialize our service through constructor injection or property injection. We will also create
+the actual service to replace MockDataStore.   
    
    
    

@@ -879,7 +879,7 @@ selector '#itemType'", ex.Message); ❹
 }
 ```
  Since _editorDialog defines the Item editing, we can implement multiple test cases against
-_editorDialog. We can see that we render _editorDialog, ❶, for multiple test cases, such
+```_editorDialog```. We can see that we render _editorDialog, ❶, for multiple test cases, such
 as Edit_New_Item and Edit_Existing_Item. Using the RenderFragment delegate, our
 testing code looks much more elegant and cleaner. If we did not go this way, we would need to repeat
 long markup code in multiple places. Using C# code directly may have even led to more duplicated code.
@@ -902,33 +902,232 @@ design test cases for these Razor pages, we can implement tests in a C# class ra
   
 # Testing Razor pages  
   
+In the process of development testing for Razor pages, we will learn about some very useful bUnit
+features. We won’t be able to review all the tests of Razor pages in our app, so we will use ItemDetail
+as an example. ItemDetail is a Razor page for displaying the content of a password entry. There
+is a route defined for it: 
   
+```@page "/entry/{SelectedItemId}"```
   
+When we want to display the ItemDetail page, we need to pass the Id info for an Item instance
+to it, and this instance cannot be a group. The initialization of the ItemDetail page is done in the
+OnParametersSet() life cycle method as we can see here:  
   
+```Csharp
+protected override void OnParametersSet() {
+ base.OnParametersSet();
+ if (SelectedItemId != null) {
+ selectedItem = DataStore.GetItem(SelectedItemId, true);
+ if (selectedItem == null) {
+ throw new InvalidOperationException( ❷
+ "ItemDetail: entry cannot be found with SelectedItemId");
+ }
+ else {
+ if (selectedItem.IsGroup) {
+ throw new InvalidOperationException( ❸
+ "ItemDetail: SelectedItemId should not be group here.");
+ }
+ else { ❹
+ fields.Clear();
+ List<Field> tmpFields = selectedItem.GetFields();
+ foreach (Field field in tmpFields) {
+ fields.Add(field);
+ }
+ notes = selectedItem.GetNotesInHtml();
+ }
+ }
+ }
+ else {
+throw new InvalidOperationException( ❶
+ "ItemDetail: SelectedItemId is null");
+ }
+}
+
+We will develop an ItemDetailTests test class to cover all the execution paths in
+OnParametersSet(). To cover all the execution paths, we can find the following test cases:
+• Test case 1: Initialize the ItemDetail instance without a selected item Id. We will get an
+InvalidOperationException exception, ❶, in this case.
+• Test case 2: Initialize the ItemDetail instance with the wrong item Id. In this case, we will
+get an InvalidOperationException exception, ❷.
+• Test case 3: Initialize the ItemDetail instance with a valid item Id, but the item type as a
+group. In this case, we will get an InvalidOperationException exception, ❸.
+• Test case 4: Initialize the ItemDetail instance with a valid item Id and the item type is
+an entry, ❹.
+We can implement these test cases in an ItemDetailTests bUnit test class as shown here in
+Listing 11.7:
+```
+**Listing 11.7: ItemDetailTests.cs (https://epa.ms/ItemDetailTests11-7)**
   
+ ```Csharp
+ namespace PassXYZ.Vault.Tests;
+[Collection("Serilog collection")]
+public class ItemDetailTests : TestContext {
+ SerilogFixture serilogFixture;
+ Mock<IDataStore<Item>> dataStore;
+ public ItemDetailTests(SerilogFixture fixture) {
+ serilogFixture = fixture;
+ dataStore = new Mock<IDataStore<Item>>(); ①
+ Services.AddSingleton<IDataStore<Item>>
+ (dataStore.Object); ②
+ }
+ [Fact]
+ public void Init_Empty_ItemDetail() { ③
+ var ex = Assert.Throws<InvalidOperationException>(
+ () => RenderComponent<ItemDetail>());
+ Assert.Equal(
+ "ItemDetail: SelectedItemId is null", ex.Message);
+ }
+ [Fact]
+ public void Load_ItemDetail_WithWrongId() {
+ var ex = Assert.Throws<InvalidOperationException>(() =>
+ RenderComponent<ItemDetail>(parameters =>
+ parameters.Add(p => p.SelectedItemId, "Wrong Id")));
+ Assert.Equal("ItemDetail: entry cannot be found with
+ SelectedItemId", ex.Message);
+ }
+ [Fact]
+ public void Load_ItemDetail_WithGroup() {
+ Item testGroup = new PwGroup(true, true) {
+ Name = "Default Group",
+ Notes = "This is a group in ItemDetailTests."
+ };
+ dataStore.Setup(x => x.GetItem(It.IsAny<string>(),
+ It.IsAny<bool>())).Returns(testGroup);
+ var ex = Assert.Throws<InvalidOperationException>(() =>
+ RenderComponent<ItemDetail>(parameters =>
+ parameters.Add(p => p.SelectedItemId, testGroup.Id)));
+ Assert.Equal("ItemDetail: SelectedItemId should not be
+ group here.", ex.Message);
+ }
+ [Fact]
+ public void Load_ItemDetail_WithEmptyFieldList() {
+ Item testEntry = new PwEntry(true, true) {
+ Name = "Default Entry",
+ Notes = "This is an entry with empty field list."
+ };
+ dataStore.Setup(x => x.GetItem(It.IsAny<string>(),
+ It.IsAny<bool>())).Returns(testEntry);
+ var cut = RenderComponent<ItemDetail>(parameters =>
+ parameters.Add(p => p.SelectedItemId, testEntry.Id));
+ cut.Find("article").MarkupMatches(
+ $"<article><p>{testEntry.Notes}</p></article>");
+ }
+}
+ ```
+The first test case is implemented in Init_Empty_ItemDetail, ③. In the test setup, we just try
+to render the ItemDetail component directly without passing it a selected item Id. We expect an
+InvalidOperationException exception to be thrown.
+Before we can run the test case, we need to resolve the IDataStore dependency first. ItemDetail
+has a dependency on the ```IDataStore<Item>``` interface. We can resolve this using dependency
+injection. In our app, this dependency is registered in MauiProgram.cs.
+With bUnit, dependency injection is supported using TestContext. We can register the dependency
+using AddSingleton(), ②. To isolate the test, we use the Moq mocking framework, ①, to replace
+the actual implementation of IDataStore, so we can reduce the complexity of the test setup.
+Using Moq, we only need to fake the method or property that we need in our test setup. It can help
+to isolate our tests from their dependencies. To use the Moq framework, we can create a Moq object
+using the interface or class that we need as a type parameter. Later, we can define the behavior of the
+target interface or class when we use it. In the constructor, we create a Mock object and register the
+```IDataStore<Item>``` interface using dataStore.Object:
+ 
+```Csharp
+dataStore = new Mock<IDataStore<Item>>();
+Services.AddSingleton<IDataStore<Item>>(dataStore.Object);
+```
+After we register IDataStore in the constructor, we can execute the first test case again. This time,
+we can get the exception and verify the message is what we expect:  
   
+ ```Csharp
+[Fact]
+public void Init_Empty_ItemDetail() {
+ var ex = Assert.Throws<InvalidOperationException>(
+ () => RenderComponent<ItemDetail>());
+ Assert.Equal("ItemDetail: SelectedItemId is null",
+ ex.Message);
+}
+ ```
+Next, let us look at the second test case. In the second test case, we pass an invalid Id to ItemDetail
+and try to render it:  
   
+```Csharp
+[Fact]
+public void Load_ItemDetail_WithWrongId() {
+var ex = Assert.Throws<InvalidOperationException>(() =>
+RenderComponent<ItemDetail>(parameters =>
+ parameters.Add(
+p => p.SelectedItemId, "Wrong Id")));
+ Assert.Equal("ItemDetail: entry cannot be found with
+ SelectedItemId", ex.Message);
+}
+```
+In this case, we also get an expected exception, and we can verify its content using Assert.Equal.
+In the third test case, we pass a valid Id to ItemDetail, but the item type is a group. This is a case
+that is hard to repeat in an integration test or user acceptance test. In a unit test, it is quite easy to
+verify as we can see here:  
   
+```Csharp
+[Fact]
+public void Load_ItemDetail_WithGroup() {
+ Item testGroup = new PwGroup(true, true) {
+ Name = "Default Group",
+ Notes = "This is a group in ItemDetailTests."
+ };
+ dataStore.Setup(x => x.GetItem(It.IsAny<string>(),
+ It.IsAny<bool>())).Returns(testGroup);
+ var ex = Assert.Throws<InvalidOperationException>(() =>
+RenderComponent<ItemDetail>(parameters =>
+parameters.Add(p => p.SelectedItemId, testGroup.Id)));
+ Assert.Equal("ItemDetail: SelectedItemId should not be
+ group here.", ex.Message);
+ } 
+```
+To test it, we need to create a group and assign it to a testGroup variable. In this test case, we need
+to call the GetItem() method of IDataStore. Since we mocked IDataStore in our setup,
+here, we need to mock the GetItem() method as well. The Moq method returns testGroup
+when it is called. After the test setup is ready, we can render ItemDetail with testGroup.Id.
+The test result is the exception that we expect.  
+
+In the final test case, we will pass a valid Item Id and the item type is an entry:
+
+```Csharp
+[Fact]
+public void Load_ItemDetail_WithEmptyFieldList() {
+Item testEntry = new PwEntry(true, true) {
+Name = "Default Entry",
+ Notes = "This is an entry with empty field list."
+ };
+ dataStore.Setup(x => x.GetItem(It.IsAny<string>(),
+ It.IsAny<bool>())).Returns(testEntry);
+ var cut = RenderComponent<ItemDetail>(parameters =>
+ parameters.Add(p => p.SelectedItemId, testEntry.Id));
+ cut.Find("article").MarkupMatches(
+ $"<article><p>{testEntry.Notes}</p></article>");
+ Debug.WriteLine($"{cut.Markup}");
+}
+```
+ 
+This test case is similar to the third test case, except we can create an entry and assign it to testEntry
+variable. After we render ItemDetail with testEntry.Id, we can verify that the ```<article>```
+rendered HTML tag is the one that we expect.
+So far, we have learned how to test Razor components using bUnit. We can see that we can achieve a
+very high level of test coverage using bUnit. This is one of the advantages of Blazor UI design.
+We have now completed all the topics that we wanted to explore on unit test development with .NET
+MAUI in this chapter.  
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+# Summary
+
+ In this chapter, we introduced unit test development for .NET MAUI apps. There are multiple test
+frameworks available. We chose xUnit as the framework in this chapter. In the MVVM pattern, the
+unit test of the model layer is the same as with any other .NET application. We developed test cases
+for the IDataStore interface to test our model layer. For the unit test of the view and view model,
+we focused on the eBlazor Hybrid app using the bUnit test library. We can develop an end-to-end
+unit test for a Blazor Hybrid app with the xUnit framework and bUnit library. With bUnit, we covered
+topics such as Razor templates, the RenderFragment delegate, dependency injection, and the
+Moq framework.
+Given the knowledge about unit testing in this chapter, you should now be able to work on your own
+unit test development. Please refer to the Further reading section to find more information on.NET
+unit test development.
+Unit testing can be part of a CI/CD pipeline. With the CI/CD setup, we can run unit tests automatically
+in the development process. We will discuss this topic further in the next chapter.  
   
   
   

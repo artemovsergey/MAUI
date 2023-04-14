@@ -1129,8 +1129,41 @@ unit test development.
 Unit testing can be part of a CI/CD pipeline. With the CI/CD setup, we can run unit tests automatically
 in the development process. We will discuss this topic further in the next chapter.  
   
-  
-  
+# Further reading
+
+* Microsoft Visual Studio 2005 Unleashed by Lars Powers and Mike Snell
+
+* https://www.amazon.com/Microsoft-Visual-Studio-2005-Unleashed/dp/0672328194
+
+* MSTest
+
+* https://github.com/microsoft/testfx
+
+* Strengthening Visual Studio Unit Tests by John Robbins
+
+* https://learn.microsoft.com/en-us/archive/msdn-magazine/2006/march/bugslayer-strengthening-visual-studio-unit-tests
+
+* NUnit Pocket Reference by Bill Hamilton
+
+* https://www.amazon.com/NUnit-Pocket-Reference-Running-OReilly/dp/0596007396
+
+* NUnit Releases at SourceForge
+
+* https://sourceforge.net/projects/nunit/
+
+* Why Did we Build xUnit 1.0
+
+* https://xunit.net/docs/why-did-we-build-xunit-1.0
+
+* xUnit documentation
+
+* https://xunit.net/
+
+* xUnit.NET 2.0 release note
+
+* https://xunit.net/releases/2.0  
+
+
   
   
   

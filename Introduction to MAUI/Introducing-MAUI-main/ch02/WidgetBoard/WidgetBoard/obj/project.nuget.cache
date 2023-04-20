@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zbGukm9QNiaT7MzkkqLpY7gsejzfMfYuOxV/yinRgPQRWOPoST7O15X9YLrpOydnMyj9CAyZ0VUHaGuL3iKRNw==",
+  "dgSpecHash": "DSFhuLVhiD4/g9WFpUeX4g7DlDPgVPMVRqwwDNav5cVrmSplOmMtGpEdzBqoKwd6vsTPYjEAr6SNSYb0TFG1BA==",
   "success": true,
-  "projectFilePath": "E:\\_Репозитории\\Курс MAUI\\Introduction to MAUI\\Introducing-MAUI-main\\ch02\\WidgetBoard\\WidgetBoard\\WidgetBoard.csproj",
+  "projectFilePath": "e:\\_Репозитории\\Курс MAUI\\Introduction to MAUI\\Introducing-MAUI-main\\ch02\\WidgetBoard\\WidgetBoard\\WidgetBoard.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
@@ -15,8 +15,8 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.graphics.win2d\\1.0.4\\microsoft.graphics.win2d.1.0.4.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.maui.graphics\\7.0.59\\microsoft.maui.graphics.7.0.59.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.maui.graphics.win2d.winui.desktop\\7.0.59\\microsoft.maui.graphics.win2d.winui.desktop.7.0.59.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.maui.graphics\\7.0.81\\microsoft.maui.graphics.7.0.81.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.maui.graphics.win2d.winui.desktop\\7.0.81\\microsoft.maui.graphics.win2d.winui.desktop.7.0.81.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.755\\microsoft.windows.sdk.buildtools.10.0.22621.755.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.windowsappsdk\\1.2.221209.1\\microsoft.windowsappsdk.1.2.221209.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\xamarin.android.glide\\4.13.2.2\\xamarin.android.glide.4.13.2.2.nupkg.sha512",
@@ -100,10 +100,10 @@
     "C:\\Users\\user\\.nuget\\packages\\xamarin.kotlin.stdlib.jdk8\\1.7.20.1\\xamarin.kotlin.stdlib.jdk8.1.7.20.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\xamarin.kotlinx.coroutines.android\\1.6.4.1\\xamarin.kotlinx.coroutines.android.1.6.4.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\xamarin.kotlinx.coroutines.core.jvm\\1.6.4.1\\xamarin.kotlinx.coroutines.core.jvm.1.6.4.1.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.28\\microsoft.windows.sdk.net.ref.10.0.19041.28.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.4\\microsoft.aspnetcore.app.runtime.win-x64.7.0.4.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.4\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.4.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.4\\microsoft.netcore.app.runtime.win-x64.7.0.4.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.5\\microsoft.netcore.app.runtime.win-x64.7.0.5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.5\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.5\\microsoft.aspnetcore.app.runtime.win-x64.7.0.5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.28\\microsoft.windows.sdk.net.ref.10.0.19041.28.nupkg.sha512"
   ],
   "logs": []
 }

@@ -114,6 +114,23 @@ public class UserContext : DbContext
 переопределение метода класса ```DbContext``` ```OnConfiguring```. Также строку подключения воспринимает через ```App.config```.
 При подключении к ```PostgreSQL``` важен регистр названий таблиц и атрибутов.
 
+
+# Scaffold
+
+**Замечание**: 
+- Microsoft.EntityFrameworkCore.Tools
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.SqlServer
+
+Целевая платформа: Windows
+
+Консоль Nuget-Package:
+
+```
+Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=GrandDatabase;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+```
+
+
 # Behavior and Event
 
 Package: ```Community.Toolkit.Maui```

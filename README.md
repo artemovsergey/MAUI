@@ -170,9 +170,9 @@ builder
 
 
 
-# CommunityToolkit.Mvvm
+# CommunityToolkit.Mvvm и CommunityToolkit.Maui
 
-**Замечание**: подключение пакета ```CommunityToolkit.Mvvm```
+```using CommunityToolkit.Maui;```
 
 MauiProgram.cs
 
@@ -180,6 +180,7 @@ MauiProgram.cs
 .UseMauiCommunityToolkit()
 ```
 
+**Замечание**: подключение пакета ```CommunityToolkit.Mvvm```
 
 ```Csharp
 public partial class MainViewModel : ObservableObject

@@ -130,6 +130,10 @@ public class UserContext : DbContext
 Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=GrandDatabase;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 ```
 
+```
+Scaffold-DbContext "Server=localhost;Database=BeautyDatabase;Trusted_Connection=True;TrustServerCertificate=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+```
+
 
 # Behavior and Event
 
